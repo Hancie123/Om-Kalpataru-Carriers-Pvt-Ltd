@@ -31,7 +31,7 @@
                     <i class="uil uil-files-landscapes"></i>
                     <span class="link-name">Account</span>
                 </a></li>
-                <li><a href="#">
+                <li><a href="inbox.php">
                 <i class='bx bxs-inbox'></i>
                     <span class="link-name">Inbox</span>
                 </a></li>

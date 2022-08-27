@@ -2,6 +2,8 @@
 
 <?php 
 
+include "connection.php";
+
 if(isset($_POST['submit'])){
 
 $email=$_POST['email'];
@@ -10,16 +12,16 @@ $password=$_POST['password'];
 
 $sql="SELECT * FROM user WHERE Email='$email' && Password='$password'";
 
-include "connection.php";
+
 
 $query=mysqli_query($conn, $sql);
   $num_rows=mysqli_num_rows($query);
 
 if($num_rows>0){
-    session_start();
-
+    
+    
 $row=mysqli_fetch_array($query);
-  
+session_start();
 $_SESSION['email']=$email;
 $_SESSION['id']=$row['User_ID'];
 $_SESSION['name'] =$row['Name'];
@@ -27,6 +29,7 @@ $_SESSION['mobile'] =$row['Mobile'];
 $_SESSION['email'] =$row['Email'];
 $_SESSION['address'] =$row['Address'];
 $_SESSION['password'] =$row['Password'];
+
 
 
 header("Location: dashboard.php");

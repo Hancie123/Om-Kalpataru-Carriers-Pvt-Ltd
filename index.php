@@ -44,7 +44,7 @@ Managing Director: Mahesh Hamal and Om Chaudary | Biratnagar: 021-590960 | Birta
         </div>
 
 <div class="col">
-        <img id="headingImage" src="Images/Logistics-rafiki.png" style="width:100%; height: 70vh">
+        <img id="headingImage" src="Images/3465253-middle.png" style="width:100%; height: 70vh">
 </div>
 
 </div>

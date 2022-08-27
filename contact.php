@@ -3,10 +3,56 @@
     
 </body>
 
+
+<?php
+
+include "connection.php";
+
+if(isset($_GET['submit'])){
+
+
+
+
+        $name=$_GET['name'];
+        $email=$_GET['email'];
+        $mobile=$_GET['mobile'];
+        $message=$_GET['message'];
+
+        $sql="INSERT INTO `contact` VALUES ('','$name','$email','$mobile','$message')";
+
+        $query=mysqli_query($conn, $sql);
+
+
+             if($query){
+
+              
+        
+        echo '
+        <br>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Success!</strong> Message is send successfully!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        
+        
+        ';
+          }
+
+          else {
+            echo "Errors";
+          }
+
+        
+      }
+
+
+
+?>
+
 <div class="container mt-4 mb-4">
             <h1 class="text-center">GET IN TOUCH WITH US</h1>
             <hr>
-            <form id="contactForm-1" action="javascript:void(0);" method="get"><input class="form-control" type="hidden" name="Introduction" value="This email was sent from www.awebsite.com"><input class="form-control" type="hidden" name="subject" value="Awebsite.com Contact Form"><input class="form-control" type="hidden" name="to" value="email@awebsite.com">
+            <form id="contactForm-1"  method="get">
                 <div class="row">
                     <div class="col-md-6">
                         <div id="successfail-1"></div>
@@ -23,18 +69,19 @@
                         </div>
 
                         <div class="form-group mb-3"><label class="form-label" for="from-email">Phone</label><span class="required-input">*</span>
-                            <div class="input-group"><span class="input-group-text"><i class="fa fa-envelope-o"></i></span><input class="form-control" type="text" id="from-email-1" name="email" required="" placeholder="Mobile Number"></div>
+                            <div class="input-group"><span class="input-group-text"><i class="fa fa-envelope-o"></i></span><input class="form-control" type="text" id="from-email-1" name="mobile" required="" placeholder="Mobile Number"></div>
                         </div>
                         
                             
                             
-                        <div class="form-group mb-3"><label class="form-label" for="from-comments">Message</label><textarea class="form-control" id="from-comments-1" name="comments" placeholder="Enter messages" rows="5"></textarea></div>
+                        <div class="form-group mb-3"><label class="form-label" for="from-comments">Message</label><textarea class="form-control" id="from-comments-1" name="message" placeholder="Enter messages" rows="5"></textarea></div>
                         <div class="form-group mb-3">
                             <div class="row">
                                 <div class="col"><button class="btn btn-primary d-block w-100" type="reset"><i class='bx bx-reset' ></i> Reset</button></div>
-                                <div class="col"><button class="btn btn-primary d-block w-100" type="submit">Submit <i class='bx bx-send'></i></button></div>
+                                <div class="col"><input class="btn btn-primary d-block w-100" type="submit" name="submit" value="Submit"></div>
                             </div>
                         </div>
+                        </form>
                         <hr class="d-flex d-md-none">
                     </div>
                     <div class="col-12 col-md-6">
@@ -61,7 +108,7 @@
                         </div>
                     </div>
                 </div>
-            </form>
+            
         </div>
         
 
