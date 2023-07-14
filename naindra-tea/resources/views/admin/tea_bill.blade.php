@@ -119,7 +119,7 @@
                                     <div class="input-group mb-3">
                                         <input type="hidden" class="form-control" placeholder="Basic KG"
                                             value="{{$data['wage_kg']}}" id="wage_kg" name="wage_kg" readonly>
-                                        <input type="text" class="form-control" id="wage_amount"
+                                        <input type="text" class="form-control" name="wage_amount" id="wage_amount"
                                             placeholder="Basic Wage" value="Rs. {{$data['wage_amount']}}" readonly>
                                         <a class="btn btn-success" data-bs-toggle="modal"
                                             data-bs-target="#editwagemodal"><i class="bi bi-pencil-square"></i></a>
@@ -134,7 +134,7 @@
                                     @endif
 
 
-                                    @error('basic_wage')
+                                    @error('wage_amount')
                                     <span class="text-danger">{{$message}}</span>
                                     @enderror
 
@@ -214,6 +214,7 @@
 
 
                         <button class="btn btn-primary" type="submit">Save Record</button>
+                        <a class="btn btn-primary" href="{{url('/admin/tea-bills/view')}}">View Bills</a>
                         <button class="btn btn-primary" type="reset">Reset</button>
 
                     </form>

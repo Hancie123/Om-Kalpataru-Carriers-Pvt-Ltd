@@ -10,4 +10,8 @@ class employeesmodel extends Model
     use HasFactory;
     protected $table="employees";
     protected $primaryKey="Employees_ID";
+
+    public function teabill(){
+        return $this->belongsTo(TeaBillModel::class);
+    }
 }

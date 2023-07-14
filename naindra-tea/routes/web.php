@@ -48,6 +48,9 @@ Route::get('/admin/profile',[profilecontroller::class,'profile'])->middleware('s
 
 Route::get('/admin/tea-bills',[teabillcontroller::class,'teabill'])->middleware('sessioncheck');
 Route::post('/admin/tea-bills/insert',[teabillcontroller::class,'insertrecord'])->middleware('sessioncheck');
+Route::get('/admin/tea-bills/view',[teabillcontroller::class,'viewteabills'])->middleware('sessioncheck');
+Route::get('/admin/tea-bills/ajax',[teabillcontroller::class,'fetchteabilldata'])->middleware('sessioncheck');
+
 
 Route::post('/admin/wage/insert',[wagecontroller::class,'insertrecord'])->middleware('sessioncheck');
 Route::post('/admin/wage/update/{id}',[wagecontroller::class,'editrecord'])->middleware('sessioncheck');

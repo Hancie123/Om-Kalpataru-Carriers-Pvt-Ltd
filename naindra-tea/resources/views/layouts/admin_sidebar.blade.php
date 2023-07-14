@@ -4,7 +4,7 @@
      <div>
          <div class="brand-logo d-flex align-items-center justify-content-between">
              <a href="{{url('admin/dashboard')}}" class="text-nowrap logo-img mx-auto d-block mt-2" id="logoLink">
-                 <img src="../assets/Images/2.png" width="80" alt="" />
+                 <img src="{{asset('assets/Images/2.png')}}" width="80" alt="" />
              </a>
 
 
