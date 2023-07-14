@@ -50,6 +50,7 @@ Route::get('/admin/tea-bills',[teabillcontroller::class,'teabill'])->middleware(
 Route::post('/admin/tea-bills/insert',[teabillcontroller::class,'insertrecord'])->middleware('sessioncheck');
 Route::get('/admin/tea-bills/view',[teabillcontroller::class,'viewteabills'])->middleware('sessioncheck');
 Route::get('/admin/tea-bills/ajax',[teabillcontroller::class,'fetchteabilldata'])->middleware('sessioncheck');
+Route::get('/admin/tea-bills/delete/{id}',[teabillcontroller::class,'deletebillrecord'])->middleware('sessioncheck');
 
 
 Route::post('/admin/wage/insert',[wagecontroller::class,'insertrecord'])->middleware('sessioncheck');

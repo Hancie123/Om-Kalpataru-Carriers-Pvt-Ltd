@@ -134,7 +134,8 @@
                 data: null,
                 render: function(data, type, row) {
                     // Add an edit button for each row
-                    return '<a href="javascript:void(0)" onclick="editCustomer(' + row.customer_id + ')" class="btn btn-primary btn-sm">Edit</a>';
+                    return '<a  class="btn btn-danger btn-sm" onclick="deleteAccess(' +
+                                row.teabill_id + ')">Delete</button>';
                 }
             }
         ],
@@ -158,8 +159,50 @@
     });
 });
 
+           
+
 
         </script>
+
+<script>
+ function deleteAccess(teabill_id) {
+        if (confirm('Are you sure you want to delete this tea bill record?')) {
+            $.ajax({
+                url: '/admin/tea-bills/delete/' + teabill_id,
+                type: 'GET',
+                data: {
+                    _method: 'DELETE'
+                },
+                success: function(response) {
+                    if (response.status === 'success') {
+                        Swal.fire({
+                            icon: 'success',
+                            title: response.message,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        $('#table_data').DataTable().ajax.reload();
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: response.message
+                        });
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        }
+    }
+</script>
+
+
+
+
+
+ 
 
 
 <style>
@@ -252,6 +295,14 @@
 
                 }
                 </style>
+
+<script>
+                $(document).ready(function() {
+                    $('.select2').select2({
+
+                    });
+                });
+                </script>
 
 
                 @include('layouts/admin_footer')

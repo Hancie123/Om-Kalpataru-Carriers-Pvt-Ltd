@@ -42,7 +42,7 @@ class teabillcontroller extends Controller
         $tea->remarks=$request['remarks'];
         if($tea){
                 $tea->save();
-                return back()->with('success','You have successfully saved the bill record of' .$request['employee_name']);
+                return back()->with('success','You have successfully saved the bill record!');
         }
         else {
                 return back()->with('fail','Error Occurred!');
@@ -50,7 +50,10 @@ class teabillcontroller extends Controller
     }
 
     public function viewteabills(){
-        return view('admin/view_tea_bills');
+        $countwage=WageModel::count();
+        $wage=WageModel::all();
+        $employee=employeesmodel::all();
+        return view('admin/view_tea_bills',compact('employee','countwage','wage'));
     }
 
     public function fetchteabilldata(){
@@ -61,4 +64,30 @@ class teabillcontroller extends Controller
         ->get();
         return response()->json(['data'=>$tea]);
     }
+
+    public function getTeaBillById($teabill_id)
+{
+    $teabill = TeaBillModel::join('employees','employees.Employees_ID','=','tea_bills.employee_id')
+    ->select('tea_bills.teabill_id','tea_bills.nep_date','employees.Name','tea_bills.wage_kg','tea_bills.wage_amount','tea_bills.tea_kg'
+    ,'tea_bills.ot_amount','tea_bills.total_amount','tea_bills.remarks')->where('teabill_id', $teabill_id)->first();
+    
+    return response()->json($teabill);
+}
+
+
+public function deletebillrecord($id) {
+    $deletedRows = TeaBillModel::where('teabill_id', $id)->delete();
+
+    if ($deletedRows > 0) {
+        return response()->json(['status' => 'success', 'message' => 'Bill record deleted successfully.']);
+    } else {
+        return response()->json(['status' => 'error', 'message' => 'Bill record not found.']);
+    }
+}
+
+
+
+
+
+
 }

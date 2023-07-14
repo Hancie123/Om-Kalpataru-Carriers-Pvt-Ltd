@@ -120,7 +120,7 @@
                                         <input type="hidden" class="form-control" placeholder="Basic KG"
                                             value="{{$data['wage_kg']}}" id="wage_kg" name="wage_kg" readonly>
                                         <input type="text" class="form-control" name="wage_amount" id="wage_amount"
-                                            placeholder="Basic Wage" value="Rs. {{$data['wage_amount']}}" readonly>
+                                            placeholder="Basic Wage" value="{{$data['wage_amount']}}" readonly>
                                         <a class="btn btn-success" data-bs-toggle="modal"
                                             data-bs-target="#editwagemodal"><i class="bi bi-pencil-square"></i></a>
                                     </div>
@@ -316,6 +316,115 @@
                         </div>
                     </div>
                 </div>
+
+<br>
+
+                <table class="table table-hover table-striped" id="table_data">
+            <thead>
+                <tr>
+                    <th>Bill ID</th>
+                    <th>Date</th>
+                    <th>Employee Name</th>
+                    <th>Wage Kg</th>
+                    <th>Wage Amount</th>
+                    <th>Tea Kg</th>
+                    <th>OT Amount</th>
+                    <th>Total Amount</th>
+                    <th>Remarks</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+        </table>
+
+        
+<script>
+    $(document).ready(function() {
+    var table = $('#table_data').DataTable({
+        ajax: {
+            url: '/admin/tea-bills/ajax',
+            type: 'GET',
+            dataType: 'json',
+            processing: true,
+        serverSide: true,
+        },
+        processing: true,
+        columns: [
+            { data: 'teabill_id' },
+            { data: 'nep_date' },
+            { data: 'Name' },
+            { data: 'wage_kg', render: function(data) { return data + ' Kg'; } },
+            { data: 'wage_amount' , render: function(data) { return ' Rs.' + data; } },
+            { data: 'tea_kg' , render: function(data) { return data + ' Kg'; } },
+            { data: 'ot_amount' , render: function(data) { return ' Rs.' +data; } },
+            { data: 'total_amount', render: function(data) { return ' Rs.' +data; } },
+            { data: 'remarks' },
+            {
+                data: null,
+                render: function(data, type, row) {
+                    // Add an edit button for each row
+                    return '<a  class="btn btn-danger btn-sm" onclick="deleteAccess(' +
+                                row.teabill_id + ')">Delete</button>';
+                }
+            }
+        ],
+        dom: 'Bfrtip',
+        buttons: [
+            'copy',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5',
+            'print'
+        ],
+        order: [
+            [0, 'desc']
+        ],
+        lengthMenu: [
+            [20, 50, 100, -1],
+            [20, 50, 100, 'All']
+        ],
+        pagingType: 'full_numbers',
+        lengthChange: true // Enable the length change option
+    });
+});
+
+           
+
+
+        </script>
+
+<script>
+ function deleteAccess(teabill_id) {
+        if (confirm('Are you sure you want to delete this tea bill record?')) {
+            $.ajax({
+                url: '/admin/tea-bills/delete/' + teabill_id,
+                type: 'GET',
+                data: {
+                    _method: 'DELETE'
+                },
+                success: function(response) {
+                    if (response.status === 'success') {
+                        Swal.fire({
+                            icon: 'success',
+                            title: response.message,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        $('#table_data').DataTable().ajax.reload();
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: response.message
+                        });
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        }
+    }
+</script>
 
 
 
