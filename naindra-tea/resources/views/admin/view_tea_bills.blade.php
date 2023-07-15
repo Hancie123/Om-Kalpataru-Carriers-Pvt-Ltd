@@ -2,7 +2,7 @@
 <html lang="en">
 @include('layouts/admin_header')
 @push('title')
-<title>Naindra Tea Farm | Tea Bills</title>
+<title>Naindra Tea Farm | view Tea Bills</title>
 @livewireStyles
 </head>
 

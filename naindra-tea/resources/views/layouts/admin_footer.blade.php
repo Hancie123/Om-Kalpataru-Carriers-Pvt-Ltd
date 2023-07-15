@@ -1,6 +1,7 @@
 <div class="py-6 px-6 text-center">
-    <p class="mb-0 fs-4">Design and Developed by <a href="https://hancie-phago.com.np/" style="text-decoration:none;"
-            target="_blank" class="pe-1 text-primary">Hancie Phago</a></p>
+    <p class="mb-0 fs-4">Designed and Developed by <a href="https://hancie-phago.com.np/" style="text-decoration:none;"
+            target="_blank" class="pe-1 text-primary">Hancie Phago</a> and <a href="https://niteshhamal.com.np/" style="text-decoration:none;"
+            target="_blank" class="pe-1 text-primary">Nitesh Hamal</a></p>
 </div>
 
 

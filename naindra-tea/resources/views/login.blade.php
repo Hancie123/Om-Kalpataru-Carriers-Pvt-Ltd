@@ -60,8 +60,10 @@
             <button data-bs-toggle="modal" data-bs-target="#myModal" class="btn signin">Register</button>
         </div>
 
-        <a style="text-decoration:none;" class="w3-display-bottommiddle text-light p-3"
-            href="https://hancie-phago.com.np/">Designed by Hancie Phago &copy; <?php echo date('Y')?></a>
+
+        <p class="w3-display-bottommiddle text-light p-3">Designed and Developed by <a href="https://hancie-phago.com.np/" style="text-decoration:none;"
+            target="_blank" class="pe-1 text-primary">Hancie Phago</a> and <a href="https://niteshhamal.com.np/" style="text-decoration:none;"
+            target="_blank" class="pe-1 text-primary">Nitesh Hamal</a> &copy; <?php echo date('Y')?></p>
     </div>
 
 

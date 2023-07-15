@@ -10,6 +10,7 @@ use App\Http\Controllers\profilecontroller;
 use App\Http\Controllers\teabillcontroller;
 use App\Http\Controllers\teasuppliercontroller;
 use App\Http\Controllers\wagecontroller;
+use App\Http\Controllers\empbillcontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,3 +61,6 @@ Route::get('/admin/tea-suppliers',[teasuppliercontroller::class,'teasuppliers'])
 Route::get('/get-tea-data/{optionId}', [teasuppliercontroller::class,'getTeaData'])->middleware('sessioncheck');
 Route::post('/admin/tea-suppliers/insert',[teasuppliercontroller::class,'insertrecord'])->middleware('sessioncheck');
 Route::get('/admin/tea-suppliers/delete/{id}',[teasuppliercontroller::class,'deleterecord'])->middleware('sessioncheck');
+
+
+Route::get('/admin/emp-bill',[empbillcontroller::class,'empbill'])->middleware('sessioncheck');
