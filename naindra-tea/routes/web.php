@@ -79,4 +79,4 @@ Route::get('/admin/fertilizer-expenses',[fertilizercontroller::class,'fertilizer
 Route::post('/admin/fertilizer-expenses/insert',[fertilizercontroller::class,'insertrecord'])->middleware('sessioncheck');
 Route::get('/admin/fertilizer-expenses/delete/{id}',[fertilizercontroller::class,'deleterecord'])->middleware('sessioncheck');
 
-Route::get('/admin/tea-reports',[reportcontroller::class,'report'])->middleware('sessioncheck');
+Route::get('/admin/tea-reports/tea-bill',[reportcontroller::class,'report'])->middleware('sessioncheck');

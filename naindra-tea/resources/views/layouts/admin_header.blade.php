@@ -2,8 +2,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @stack('title')
-    <link rel="shortcut icon" type="image/png" href="{{url('assets/images/profile/user-1.jpg')}}"/>
-    <link rel="stylesheet" href="{{url('/assets/css/styles.min.css')}}"/>
+    <link rel="shortcut icon" type="image/png" href="{{url('assets/images/profile/user-1.jpg')}}" />
+    <link rel="stylesheet" href="{{url('/assets/css/styles.min.css')}}" />
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
@@ -15,3 +15,7 @@
         rel="stylesheet" type="text/css" />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/chart.js/dist/Chart.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.
+0/Chart.min.js"></script>
+ 

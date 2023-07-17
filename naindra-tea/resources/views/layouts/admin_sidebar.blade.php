@@ -154,7 +154,7 @@
                  </li>
 
                  <li class="sidebar-item">
-                     <a class="sidebar-link" href="{{url('/admin/tea-reports')}}" aria-expanded="false">
+                     <a class="sidebar-link" href="{{url('/admin/tea-reports/tea-bill')}}" aria-expanded="false">
                          <span>
                              <i class="bi bi-graph-down bx-sm"></i>
                          </span>

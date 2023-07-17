@@ -10,4 +10,6 @@ class TeaBillModel extends Model
     use HasFactory;
     protected $table="tea_bills";
     protected $primarykey="teabill_id";
+    protected $fillable = ['date', 'tea_kg', 'wage_kg', 'wage_amount', 'ot_amount'];
+
 }
