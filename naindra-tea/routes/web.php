@@ -15,6 +15,7 @@ use App\Http\Controllers\chemicalexpensescontroller;
 use App\Http\Controllers\fertilizercontroller;
 use App\Http\Controllers\reportcontroller;
 use App\Http\Controllers\employeesreportcontroller;
+use App\Http\Controllers\toolscontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,3 +83,7 @@ Route::get('/admin/fertilizer-expenses/delete/{id}',[fertilizercontroller::class
 
 Route::get('/admin/tea-reports/tea-bill',[reportcontroller::class,'report'])->middleware('sessioncheck');
 Route::get('/admin/tea-reports/employees',[employeesreportcontroller::class,'employeesreport'])->middleware('sessioncheck');
+
+
+
+Route::get('/admin/tools',[toolscontroller::class,'tools'])->middleware('sessioncheck');
