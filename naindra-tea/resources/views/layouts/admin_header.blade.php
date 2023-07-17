@@ -15,7 +15,4 @@
         rel="stylesheet" type="text/css" />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/chart.js/dist/Chart.min.css">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.
-0/Chart.min.js"></script>
  

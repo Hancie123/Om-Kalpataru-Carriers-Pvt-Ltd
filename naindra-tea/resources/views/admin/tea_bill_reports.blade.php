@@ -2,7 +2,7 @@
 <html lang="en">
 @include('layouts/admin_header')
 @push('title')
-<title>Naindra Tea Farm | Fertilizer Expenses</title>
+<title>Naindra Tea Farm | Tea Bill Report</title>
 @livewireStyles
 </head>
 
@@ -76,7 +76,7 @@
                 <div id="w3-bar" class="w3-bar">
                     <a href="{{url('/admin/tea-reports/tea-bill')}}" class="w3-bar-item w3-button w3-green">Tea
                         Bills</a>
-                    <a href="#" class="w3-bar-item w3-button">Employees</a>
+                    <a href="{{url('/admin/tea-reports/employees')}}" class="w3-bar-item w3-button">Employees</a>
                     <a href="#" class="w3-bar-item w3-button">Chemical</a>
                     <a href="#" class="w3-bar-item w3-button">Fertilizer</a>
                     <a href="#" class="w3-bar-item w3-button">Suppliers</a>
@@ -119,7 +119,14 @@
 
                 @if(isset($teabillreport))
                 <div class="container rounded-container bg-light">
-                    <h5>Showing Record(s) of {{$remarks}}</h5>
+                    <h5>Showing Record(s) of 
+                        @if(!empty($remarks))
+                        {{$remarks}}
+                        @else
+                        All Time
+                        @endif
+
+                    </h5>
                     <div class="row">
                         <div class="col-md-4">
                             <div style="background-image: linear-gradient(green, yellow);" id="card" class="card">
@@ -141,7 +148,7 @@
                             <div style="background-image: linear-gradient(green, yellow);" id="card" class="card">
                                 <div class="card-body w3-border-red w3-leftbar rounded">
                                     <h4 class="card-title text-light"><i class='bx bx-leaf'></i> Total Wage Amount</h4>
-                                    <h4 class="text-light">{{ $teabillreport->total_wage_amount}} Kg</h4>
+                                    <h4 class="text-light">Rs. {{ $teabillreport->total_wage_amount}}</h4>
                                 </div>
                             </div>
                         </div>
@@ -153,7 +160,7 @@
                             <div style="background-image: linear-gradient(green, yellow);" id="card" class="card">
                                 <div class="card-body w3-border-red w3-leftbar rounded">
                                     <h4 class="card-title text-light"><i class='bx bx-leaf'></i> Total OT Amount</h4>
-                                    <h4 class="text-light">{{ $teabillreport->total_ot_amount }} Kg</h4>
+                                    <h4 class="text-light">Rs. {{ $teabillreport->total_ot_amount }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -161,7 +168,7 @@
                             <div style="background-image: linear-gradient(green, yellow);" id="card" class="card">
                                 <div class="card-body w3-border-red w3-leftbar rounded">
                                     <h4 class="card-title text-light"><i class='bx bx-leaf'></i> Total Amount</h4>
-                                    <h4 class="text-light">{{ $teabillreport->total_amount2}} Kg</h4>
+                                    <h4 class="text-light">Rs. {{ $teabillreport->total_amount2}}</h4>
                                 </div>
                             </div>
                         </div>
@@ -171,64 +178,12 @@
                     </div>
 
 
-
-
-
-                    <script type="text/javascript">
-                    var ctx = document.getElementById("chartjs_bar").getContext('2d');
-                    var myChart = new Chart(ctx, {
-                        type: 'bar',
-                        data: {
-                            labels: <?php echo json_encode($data); ?>,
-                            datasets: [{
-                                backgroundColor: [
-                                    "#5969ff",
-                                    "#ff407b",
-                                    "#25d5f2",
-                                    "#ffc750",
-                                    "#2ec551",
-                                    "#7040fa",
-                                    "#ff004e",
-                                ],
-                                data: <?php echo json_encode($data); ?>,
-                            }]
-                        },
-                        options: {
-                            legend: {
-                                display: true,
-                                position: 'bottom',
-
-                                labels: {
-                                    fontColor: '#71748d',
-                                    fontFamily: 'Circular Std Book',
-                                    fontSize: 14,
-                                }
-                            },
-
-
-                        }
-                    });
-                    </script>
-
-
-
-
-
-
                 </div>
                 @else
                 <div class="container rounded-container bg-light">
                     <h5 class="text-center">Please select round and no of days to show record</h5>
                 </div>
                 @endif
-
-
-
-
-
-
-
-
 
 
 

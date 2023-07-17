@@ -14,4 +14,8 @@ class employeesmodel extends Model
     public function teabill(){
         return $this->belongsTo(TeaBillModel::class);
     }
+
+    public function employees(){
+        return $this->belongsTo(TeaBillModel::class);
+    }
 }

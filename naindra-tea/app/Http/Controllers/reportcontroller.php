@@ -54,18 +54,8 @@ class reportcontroller extends Controller
                 DB::raw('SUM(total_amount) as total_amount2'),
             )->first();
 
+
             
-            $teaBills = TeaBillModel::select('date', 'tea_kg')
-            ->orderBy('date')
-            ->get();
-        
-        $data = [];
-        foreach ($teaBills as $teaBill) {
-            $data[] = [
-                'x' => strtotime($teaBill->date) * 1000, // Convert the date to milliseconds
-                'y' => $teaBill->tea_kg,
-            ];
-        }
         
         
         }
@@ -73,6 +63,6 @@ class reportcontroller extends Controller
        
 
 
-        return view('admin/tea_bill_reports',compact('teabills','teabillreport','remarks','data'));
+        return view('admin/tea_bill_reports',compact('teabills','teabillreport','remarks'));
     }
 }
