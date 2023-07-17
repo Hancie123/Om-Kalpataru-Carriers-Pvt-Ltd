@@ -2,7 +2,7 @@
 <html lang="en">
 @include('layouts/admin_header')
 @push('title')
-<title>Naindra Tea Farm | Tea Records</title>
+<title>Naindra Tea Farm | Chemical Expenses</title>
 @livewireStyles
 </head>
 
@@ -74,11 +74,11 @@
 
 
 
-                
+
                 <div class="container rounded-container bg-light">
-                <h2 class=" text-center">Tea Record Management System</h2>
-                <p class="text-center mb-3 text-dark h5">Naindra Tea Farm</p><br>
-                    <form action="{{url('admin/tea-records/insert')}}" method="post">
+                    <h2 class=" text-center">Chemical Expenses Management System</h2>
+                    <p class="text-center mb-3 text-dark h5">Naindra Tea Farm</p><br>
+                    <form action="{{url('/admin/chemical-expenses/insert')}}" method="post">
                         @csrf
                         <input type="hidden" name="date" value="<?php echo date("Y-m-d");?>" class="form-control"
                             readonly>
@@ -97,19 +97,19 @@
                                     @enderror
                                 </div>
                                 <div class="col-sm-4 column mb-3">
-                                    <label class="form-label">Tea KG</label>
-                                    <input type="text" class="form-control" id="tea_kg" placeholder="Enter Tea Kg"
-                                        name="tea_kg">
-                                    @error('tea_kg')
+                                    <label class="form-label">Product Name</label>
+                                    <input type="text" class="form-control" id="product_name"
+                                        placeholder="Enter Product Name" name="product_name">
+                                    @error('product_name')
                                     <span class="text-danger">{{$message}}</span>
                                     @enderror
                                 </div>
                                 <div class="col-sm-4 column mb-3">
 
-                                    <label class="form-label">Tea Rate</label>
-                                    <input type="text" class="form-control" id="tea_rate" placeholder="Enter tea rate"
-                                        name="tea_rate">
-                                    @error('tea_rate')
+                                    <label class="form-label">Rate</label>
+                                    <input type="text" class="form-control" id="rate" placeholder="Enter Rate"
+                                        name="rate">
+                                    @error('rate')
                                     <span class="text-danger">{{$message}}</span>
                                     @enderror
 
@@ -119,76 +119,24 @@
 
                             <div class="row">
                                 <div class="col-sm-4 column mb-3">
-                                    <label class="form-label">Water Percent</label>
-                                    <select class="form-select" id="water_percent" name="water_percent">
-                                        <option>Select an option</option>
-                                        <option value="0">0 Percent</option>
-                                        <option value="1">1 Percent</option>
-                                        <option value="2">2 Percent</option>
-                                        <option value="3">3 Percent</option>
-                                        <option value="4">4 Percent</option>
-                                        <option value="5">5 Percent</option>
-                                        <option value="6">6 Percent</option>
-                                        <option value="7">7 Percent</option>
-                                        <option value="8">8 Percent</option>
-                                        <option value="9">9 Percent</option>
-                                        <option value="10">10 Percent</option>
-                                        <option value="11">11 Percent</option>
-                                        <option value="12">12 Percent</option>
-                                        <option value="13">13 Percent</option>
-                                        <option value="14">14 Percent</option>
-                                        <option value="15">15 Percent</option>
-
-                                    </select>
-                                    @error('water_percent')
+                                    <label class="form-label">Quantity</label>
+                                    <input type="text" class="form-control" id="quantity" placeholder="Enter Quantity"
+                                        name="quantity">
+                                    @error('quantity')
                                     <span class="text-danger">{{$message}}</span>
                                     @enderror
                                 </div>
-                                <div class="col-sm-4 column mb-3">
-                                    <label class="form-label">Water Deducted Percent Kg</label>
-                                    <input type="text" class="form-control" id="water_kg" placeholder="Total Water KG"
-                                        name="water_kg" readonly>
-                                    @error('water_kg')
-                                    <span class="text-danger">{{$message}}</span>
-                                    @enderror
-                                </div>
-                                <div class="col-sm-4 column mb-3">
-                                    <label class="form-label">Total Tea KG</label>
-                                    <input type="text" class="form-control" id="total_kg" placeholder="Total Tea"
-                                        name="total_tea_kg" readonly>
-                                    @error('total_tea_kg')
-                                    <span class="text-danger">{{$message}}</span>
-                                    @enderror
-                                </div>
-                            </div>
-
-
-
-                            <div class="row">
                                 <div class="col-sm-4 column mb-3">
                                     <label class="form-label">Total Amount</label>
-                                    <input type="text" class="form-control" id="total_amount" placeholder="Total Amount"
-                                        name="total_amount" readonly>
+                                    <input type="text" class="form-control" id="total_amount"
+                                        placeholder="Total Total Amount" name="total_amount">
                                     @error('total_amount')
                                     <span class="text-danger">{{$message}}</span>
                                     @enderror
                                 </div>
                                 <div class="col-sm-4 column mb-3">
-                                    <label class="form-label">Plucked time</label>
-                                    <select class="form-select" id="plucked_time" name="plucked_time">
-                                        <option>Select an option</option>
-                                        <option value="Morning">Morning</option>
-                                        <option value="Afternoon">Afternoon</option>
-                                        <option value="Whole Day">Whole Day</option>
-
-                                    </select>
-                                    @error('plucked_time')
-                                    <span class="text-danger">{{$message}}</span>
-                                    @enderror
-                                </div>
-                                <div class="col-sm-4 column mb-3">
                                     <label class="form-label">Remarks</label>
-                                    <select class="form-select" name="remarks">
+                                    <select class="select2 form-select" name="remarks">
                                         <option>Select an option</option>
                                         <option value="First Round <?php echo date('Y')?>">First Round
                                             <?php echo date('Y')?></option>
@@ -216,6 +164,7 @@
                                 </div>
                             </div>
 
+
                         </div>
 
 
@@ -232,39 +181,51 @@
                 </div>
 
 
+                <script>
+                $(document).ready(function() {
+                    // Get value on keyup and select change events
+                    $("#rate, #quantity").on('keyup change', function() {
+                        var total = 0;
+                        var x = Number($("#rate").val());
+                        var y = Number($("#quantity").val());
+
+                        var totalamount = x * y;
+                        $('#total_amount').val(totalamount);
+
+                    });
+                });
+                </script>
+
+
                 <div class="container responsive-table mt-3">
                     <table class="table" id="myTable">
                         <thead class="p-0 text-light" id="table-heading">
                             <tr>
                                 <th>ID</th>
                                 <th>Date</th>
-                                <th>Tea KG</th>
-                                <th>Tea Rate</th>
-                                <th>Water Percent</th>
-                                <th>Water KG</th>
-                                <th>Total Tea KG</th>
+                                <th>Product Name</th>
+                                <th>Rate</th>
+                                <th>Quantity</th>
                                 <th>Total Amount</th>
-                                <th>Plucked Time</th>
                                 <th>Remarks</th>
-                                <th>Updated</th>
+                                <th>Created At</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody class="text-dark">
-                            @foreach($tea_records as $data)
+                            @foreach($chemical as $data)
                             <tr>
-                                <td>{{$data['tea_id']}}</td>
+                                <td>{{$data['chemicalexpenses_id']}}</td>
                                 <td>{{$data['nep_date']}}</td>
-                                <td>{{$data['tea_kg']}} KG</td>
-                                <td>{{$data['tea_rate']}}</td>
-                                <td>{{$data['water_percent']}}%</td>
-                                <td>{{$data['water_kg']}} KG</td>
-                                <td>{{$data['total_tea_kg']}} KG</td>
-                                <td>Rs. {{$data['total_amount']}}</td>
-                                <td>{{$data['plucked_time']}}</td>
+                                <td>{{$data['product_name']}}</td>
+                                <td>{{$data['rate']}}</td>
+                                <td>{{$data['quantity']}}</td>
+                                <td>{{$data['total_amount']}}</td>
                                 <td>{{$data['remarks']}}</td>
+                               
+
                                 <td>
-                                    @if ($data->created_at)
+                                    @if ($data->updated_at)
                                     {{ $data->updated_at->diffForHumans() }}
                                     @else
                                     N/A
@@ -273,12 +234,10 @@
                                 <td>
 
                                     <div class="btn-group">
-                                        <a href="javascript:void(0)" onclick="editTearecords('{{$data['tea_id']}}')"
-                                            class="btn btn-primary"><i class='bx bx-edit-alt'></i></a>
-                                        <a href="{{url('/admin/tea-records/delete')}}/{{$data->tea_id}}"
+
+                                        <a href="{{url('/admin/chemical-expenses/delete/')}}/{{$data->chemicalexpenses_id}}"
                                             class="btn btn-primary bg-danger"><i class="bi bi-x-circle"></i></a>
-                                        <a href="javascript:void(0)" onclick="viewTearecords('{{$data['tea_id']}}')"
-                                            class="btn btn-primary bg-success"><i class="bi bi-eye"></i></i></a>
+
                                     </div>
 
                                 </td>
@@ -420,7 +379,7 @@
                                         <div class="col-sm-4 column mb-3">
                                             <label class="form-label">Remarks</label>
                                             <select class="form-select" id="remarks2" name="remarks2">
-                                                <option>Select an option</option>
+
                                                 <option value="First Round <?php echo date('Y')?>">First Round
                                                     <?php echo date('Y')?></option>
                                                 <option value="Second Round <?php echo date('Y')?>">Second Round
@@ -465,6 +424,9 @@
                         </div>
                     </div>
                 </div>
+
+
+
 
 
 
@@ -660,24 +622,7 @@
 
 
 
-                <script>
-                $(document).ready(function() {
-                    // Get value on keyup and select change events
-                    $("#tea_kg, #tea_rate, #water_percent").on('keyup change', function() {
-                        var total = 0;
-                        var x = Number($("#tea_kg").val());
-                        var y = Number($("#tea_rate").val());
-                        var z = Number($("#water_percent").val());
 
-                        var waterpercent = x / 100 * z;
-                        var netkg = x - waterpercent;
-                        var totalamount = netkg * y;
-                        $('#water_kg').val(waterpercent);
-                        $('#total_kg').val(netkg);
-                        $('#total_amount').val(totalamount);
-                    });
-                });
-                </script>
 
 
                 <script>
@@ -853,6 +798,11 @@
                     display: inline-block;
 
                 }
+
+                .select2-container .select2-selection--single {
+                    height: calc(2.25rem + 2px) !important;
+
+                }
                 </style>
 
                 <script>
@@ -879,6 +829,15 @@
 
                     })
                 }
+                </script>
+
+
+                <script>
+                $(document).ready(function() {
+                    $('.select2').select2({
+                        placeholder: 'Select an option'
+                    });
+                });
                 </script>
 
 

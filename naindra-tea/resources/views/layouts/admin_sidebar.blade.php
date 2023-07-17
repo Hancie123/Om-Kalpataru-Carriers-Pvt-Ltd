@@ -136,7 +136,25 @@
                  </li>
 
                  <li class="sidebar-item">
-                     <a class="sidebar-link" href="{{url('/logout')}}" aria-expanded="false">
+                     <a class="sidebar-link" href="{{url('/admin/chemical-expenses')}}" aria-expanded="false">
+                         <span>
+                         <i class="bi bi-wallet2 bx-sm"></i>
+                         </span>
+                         <span class="hide-menu">Chemical Expenses</span>
+                     </a>
+                 </li>
+
+                 <li class="sidebar-item">
+                     <a class="sidebar-link" href="{{url('/admin/fertilizer-expenses')}}" aria-expanded="false">
+                         <span>
+                         <i class="bi bi-wallet2 bx-sm"></i>
+                         </span>
+                         <span class="hide-menu">Fertilizer Expenses</span>
+                     </a>
+                 </li>
+
+                 <li class="sidebar-item">
+                     <a class="sidebar-link" href="{{url('/admin/tea-reports')}}" aria-expanded="false">
                          <span>
                              <i class="bi bi-graph-down bx-sm"></i>
                          </span>

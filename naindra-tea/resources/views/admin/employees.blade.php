@@ -74,8 +74,10 @@
 
 
 
-                <h2 class="mb-3">Create Employees Account</h2><br>
+                
                 <div class="container rounded-container bg-light">
+                <h2 class=" text-center">Employees Account Management System</h2>
+                <p class="text-center mb-3 text-dark h5">Naindra Tea Farm</p><br>
                     <form action="{{url('admin/employees/insertrecord')}}" method="post">
                         @csrf
                         <input type="hidden" name="date" value="<?php echo date("Y-m-d");?>" class="form-control"

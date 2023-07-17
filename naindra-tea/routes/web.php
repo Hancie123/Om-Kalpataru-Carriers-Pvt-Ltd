@@ -11,6 +11,9 @@ use App\Http\Controllers\teabillcontroller;
 use App\Http\Controllers\teasuppliercontroller;
 use App\Http\Controllers\wagecontroller;
 use App\Http\Controllers\empbillcontroller;
+use App\Http\Controllers\chemicalexpensescontroller;
+use App\Http\Controllers\fertilizercontroller;
+use App\Http\Controllers\reportcontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,3 +67,16 @@ Route::get('/admin/tea-suppliers/delete/{id}',[teasuppliercontroller::class,'del
 
 
 Route::get('/admin/emp-bill',[empbillcontroller::class,'empbill'])->middleware('sessioncheck');
+
+
+
+Route::get('/admin/chemical-expenses',[chemicalexpensescontroller::class,'chemicalexpenses'])->middleware('sessioncheck');
+Route::post('/admin/chemical-expenses/insert',[chemicalexpensescontroller::class,'insertrecord'])->middleware('sessioncheck');
+Route::get('/admin/chemical-expenses/delete/{id}',[chemicalexpensescontroller::class,'deleterecord'])->middleware('sessioncheck');
+
+
+Route::get('/admin/fertilizer-expenses',[fertilizercontroller::class,'fertilizer'])->middleware('sessioncheck');
+Route::post('/admin/fertilizer-expenses/insert',[fertilizercontroller::class,'insertrecord'])->middleware('sessioncheck');
+Route::get('/admin/fertilizer-expenses/delete/{id}',[fertilizercontroller::class,'deleterecord'])->middleware('sessioncheck');
+
+Route::get('/admin/tea-reports',[reportcontroller::class,'report'])->middleware('sessioncheck');

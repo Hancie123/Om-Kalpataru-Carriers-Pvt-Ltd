@@ -182,12 +182,6 @@
                 </script>
 
 
-
-
-
-
-
-
                 <script>
                 function printTable() {
                     var printContents = document.getElementById("print-table").innerHTML;
