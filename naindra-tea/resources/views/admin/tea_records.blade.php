@@ -232,7 +232,7 @@
                 </div>
 
 
-                <div class="container responsive-table mt-3">
+                <div class="container table-responsive mt-3">
                     <table class="table" id="myTable">
                         <thead class="p-0 text-light" id="table-heading">
                             <tr>

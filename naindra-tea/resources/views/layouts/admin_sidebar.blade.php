@@ -71,20 +71,21 @@
 
 
              <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
-                 <i class="ti ti-x fs-8"></i>
+             <i class='bx bx-x bx-sm'></i>
              </div>
          </div>
          <!-- Sidebar navigation-->
          <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
              <ul id="sidebarnav">
                  <li class="nav-small-cap text-center">
+                    
                      <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                      <span class="hide-menu">Menus</span>
                  </li>
                  <li class="sidebar-item">
                      <a class="sidebar-link" href="{{url('admin/dashboard')}}" aria-expanded="false">
                          <span>
-                             <i class="ti ti-layout-dashboard"></i>
+                         <i class='bx bxs-dashboard bx-sm'></i>
                          </span>
                          <span class="hide-menu">Dashboard</span>
                      </a>
@@ -176,7 +177,7 @@
                  <li class="sidebar-item">
                      <a class="sidebar-link" href="{{url('/logout')}}" aria-expanded="false">
                          <span>
-                             <i class="ti ti-login"></i>
+                         <i class='bx bx-log-out bx-sm'></i>
                          </span>
                          <span class="hide-menu">Logout</span>
                      </a>

@@ -4,12 +4,12 @@
         <ul class="navbar-nav">
             <li class="nav-item d-block d-xl-none">
                 <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
-                    <i class="ti ti-menu-2"></i>
+                    <i class="bx bx-menu bx-sm"></i>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link nav-icon-hover" href="javascript:void(0)">
-                    <i class="ti ti-bell-ringing"></i>
+                <i class='bx bx-bell bx-sm' ></i>
                     <div class="notification bg-primary rounded-circle"></div>
                 </a>
             </li>
