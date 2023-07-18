@@ -6,7 +6,10 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="{{url('assets/Images/2.png')}}" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>Naindra Tea Farm</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -57,14 +60,13 @@
                 @endif
 
             </form>
-            <button data-bs-toggle="modal" data-bs-target="#myModal" class="btn signin">Register</button>
+            <!-- <button data-bs-toggle="modal" data-bs-target="#myModal" class="btn signin">Register</button> -->
         </div>
 
 
-        <p class="w3-display-bottommiddle text-light p-3">Designed and Developed by <a href="https://hancie-phago.com.np/" style="text-decoration:none;"
-            target="_blank" class="pe-1 text-primary">Hancie Phago</a> and <a href="https://niteshhamal.com.np/" style="text-decoration:none;"
-            target="_blank" class="pe-1 text-primary">Nitesh Hamal</a> &copy; <?php echo date('Y')?></p>
+        
     </div>
+    
 
 
     <!-- The Modal -->
