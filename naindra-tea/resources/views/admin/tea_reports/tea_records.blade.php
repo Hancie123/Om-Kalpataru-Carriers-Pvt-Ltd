@@ -129,8 +129,8 @@
                             <p class="text-center text-dark p-0 m-0">Mobile no: 9816043149</p><br>
 
                             <p class="text-dark m-0">Tea Plucked Date:<br>
-                                @foreach($tearecord as $data)
-                                <span>{{$data->nep_date}}</span>
+                                @foreach($tearecord2 as $data)
+                                <span>{{$data->nep_date}}</span><br>
                                 @endforeach
                             </p>
 
@@ -141,7 +141,7 @@
 
                             <div class="table-responsive mt-2">
 
-                                <table id="tea-table" class="table  rounded w3-border">
+                                <table id="tea-table" class="table rounded-billing-table rounded w3-border rounded-3">
                                     <thead id="tearecordtable bordered rounded shadow p-0 m-0" class="text-center">
                                         <tr>
                                             <th>Date</th>
@@ -155,8 +155,8 @@
                                         <tr>
                                             <td>{{$data['nep_date']}}</td>
                                             <td>{{$data['plucked_time']}}</td>
-                                            <td>{{$data['total_tea_kg']}}</td>
-                                            <td>{{$data['total_amount']}}</td>
+                                            <td>{{$data['total_tea_kg']}} Kg</td>
+                                            <td>Rs. {{$data['total_amount']}}</td>
                                         </tr>
                                         @endforeach
                                         <tr id="total-row">
@@ -191,11 +191,67 @@
                 </div>
 
                 <style>
-                #tearecordtable {
-                    background-color: rgb(245, 248, 250);
+                /* Custom styles for the billing table */
+                .rounded-billing-table {
+                    border-radius: 15px;
+                    border-collapse: separate;
+                    border-spacing: 0;
+                    overflow: hidden;
                 }
-               
+
+                .rounded-billing-table thead th {
+                    background-color: #f1f1f1;
+                }
+
+                .rounded-billing-table th,
+                .rounded-billing-table td {
+                    padding: 10px 15px;
+                    text-align: center;
+                    border: 1px solid #ccc;
+                }
+
+                .rounded-billing-table tbody tr:last-child td {
+                    border-bottom: none;
+                }
+
+                .rounded-billing-table tfoot td {
+                    border-top: 1px solid #ccc;
+                }
+
+
+                /* Custom styles for the table when printing */
+    @media print {
+        .rounded-billing-table {
+            border-radius: 15px;
+            border-collapse: separate;
+            border-spacing: 0;
+            overflow: hidden;
+        }
+
+        .rounded-billing-table thead th {
+            background-color: #f1f1f1;
+        }
+
+        .rounded-billing-table th,
+        .rounded-billing-table td {
+            padding: 10px 15px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+
+        .rounded-billing-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .rounded-billing-table tfoot td {
+            border-top: 1px solid #ccc;
+        }
+    }
+
+                
                 </style>
+
+
 
                 <script>
                 // Wait for the document to load before executing the JavaScript code
@@ -236,32 +292,44 @@
                     }
 
                     // Function to convert numeric value to words
-function numberToWords(num) {
-    const ones = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten',
-                  'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'];
+                    function numberToWords(num) {
+                        const ones = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight',
+                            'Nine', 'Ten',
+                            'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen',
+                            'Eighteen', 'Nineteen'
+                        ];
 
-    const tens = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+                        const tens = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy',
+                            'Eighty', 'Ninety'
+                        ];
 
-    function convertToWords(num) {
-        if (num < 20) return ones[num];
-        if (num < 100) return tens[Math.floor(num / 10)] + (num % 10 !== 0 ? '-' + ones[num % 10] : '');
-        if (num < 1000) return ones[Math.floor(num / 100)] + ' Hundred' + (num % 100 !== 0 ? ' and ' + convertToWords(num % 100) : '');
-        if (num < 1000000) return convertToWords(Math.floor(num / 1000)) + ' Thousand' + (num % 1000 !== 0 ? ' ' + convertToWords(num % 1000) : '');
-        if (num < 1000000000) return convertToWords(Math.floor(num / 1000000)) + ' Million' + (num % 1000000 !== 0 ? ' ' + convertToWords(num % 1000000) : '');
-        return 'Number too large';
-    }
+                        function convertToWords(num) {
+                            if (num < 20) return ones[num];
+                            if (num < 100) return tens[Math.floor(num / 10)] + (num % 10 !== 0 ? '-' + ones[
+                                num % 10] : '');
+                            if (num < 1000) return ones[Math.floor(num / 100)] + ' Hundred' + (num % 100 !== 0 ?
+                                ' and ' + convertToWords(num % 100) : '');
+                            if (num < 1000000) return convertToWords(Math.floor(num / 1000)) + ' Thousand' + (
+                                num % 1000 !== 0 ? ' ' + convertToWords(num % 1000) : '');
+                            if (num < 1000000000) return convertToWords(Math.floor(num / 1000000)) +
+                                ' Million' + (num % 1000000 !== 0 ? ' ' + convertToWords(num % 1000000) :
+                                    '');
+                            return 'Number too large';
+                        }
 
-    return convertToWords(num);
-}
+                        return convertToWords(num);
+                    }
 
-// Assuming 'totalAmount' is a numeric value representing the total amount
-// Display total amount with commas as thousands separators and in words
-var totalAmountCell = document.getElementById('total-amount');
-if (totalAmountCell) {
-    var formattedTotalAmount = totalAmount.toLocaleString(); // Convert to string with commas
-    var totalAmountInWords = numberToWords(totalAmount);
-    totalAmountCell.innerText = 'Total Rs: ' + formattedTotalAmount + '\n(' + totalAmountInWords + ')';
-}
+                    // Assuming 'totalAmount' is a numeric value representing the total amount
+                    // Display total amount with commas as thousands separators and in words
+                    var totalAmountCell = document.getElementById('total-amount');
+                    if (totalAmountCell) {
+                        var formattedTotalAmount = totalAmount
+                            .toLocaleString(); // Convert to string with commas
+                        var totalAmountInWords = numberToWords(totalAmount);
+                        totalAmountCell.innerText = 'Total Rs: ' + formattedTotalAmount + '\n(' +
+                            totalAmountInWords + ' Rupees Only' + ')';
+                    }
 
 
                 });

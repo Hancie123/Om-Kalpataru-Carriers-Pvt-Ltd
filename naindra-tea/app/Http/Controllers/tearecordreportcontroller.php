@@ -25,12 +25,19 @@ class tearecordreportcontroller extends Controller
     ->get();
 
 
+    $tearecord2 = TeaModel::select('nep_date')
+    ->where('remarks', $remarks)
+    ->distinct()
+    ->get();
+
+
+
         $count = $tearecord->count();
 
        
 
 
 
-        return view('admin/tea_reports/tea_records',compact('teabills','remarks','tearecord','count'));
+        return view('admin/tea_reports/tea_records',compact('teabills','remarks','tearecord','count','tearecord2'));
     }
 }

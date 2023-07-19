@@ -78,7 +78,7 @@
                         Bills</a>
                     <a href="{{url('/admin/tea-reports/employees')}}"
                         class="w3-bar-item w3-button w3-green">Employees</a>
-                        <a href="{{url('/admin/tea-reports/tea-records')}}" class="w3-bar-item w3-button">Tea Records</a>
+                    <a href="{{url('/admin/tea-reports/tea-records')}}" class="w3-bar-item w3-button">Tea Records</a>
                     <a href="#" class="w3-bar-item w3-button">Chemical</a>
                     <a href="#" class="w3-bar-item w3-button">Fertilizer</a>
                     <a href="#" class="w3-bar-item w3-button">Suppliers</a>
@@ -98,15 +98,17 @@
 
 
                     <br>
+                    <h5 class="text-dark mb-3">Showing {{$count}} Employees Data...</h5>
                     <div id="print-table">
                         <div class="row">
 
                             @foreach($employees as $data)
-                            <div class="col-md-3">
-                                <div style="background-image: linear-gradient(green, yellow);" id="card" class="card">
-                                    <div class="card-body w3-border-red w3-leftbar rounded">
-                                        <h4 class="text-light">{{ $data->Name }}</h4>
-                                        <h4 class="text-light">{{ $data->total_kg }} Kg</h4>
+                            <div class="col-md-3 mb-3">
+                                <div class="premium-card">
+                                    <div class="card-content">
+                                        <h4 class="card-title">{{ $data->Name }}</h4>
+                                        <p class="card-info">{{ $data->total_kg }} Kg</p>
+                                        <p class="card-price">Rs. {{ $data->total }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -162,6 +164,41 @@
             .select2-container .select2-selection--single {
                 height: calc(2.25rem + 2px) !important;
 
+            }
+
+            /* Add this CSS in your existing stylesheet or inside <style> tags in the head section */
+
+            /* Custom styles for the premium card */
+            .premium-card {
+                border: 1px solid #e5e5e5;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                background-color: #f9f9f9;
+                width: 250px;
+                margin: 0 auto;
+                padding: 20px;
+                text-align: center;
+            }
+
+          
+
+            .card-title {
+                color: #333;
+                font-size: 24px;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+
+            .card-info {
+                color: #777;
+                font-size: 18px;
+                margin-bottom: 5px;
+            }
+
+            .card-price {
+                color: #25a3d3;
+                font-size: 24px;
+                font-weight: bold;
             }
             </style>
 
