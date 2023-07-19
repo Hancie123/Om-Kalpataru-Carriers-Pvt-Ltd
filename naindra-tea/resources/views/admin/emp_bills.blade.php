@@ -155,7 +155,8 @@
                         <button class="btn btn-primary" onclick="printTable()">Print Table</button>
                     </div>
                     @else
-                    <p class="text-center p-3 bg-primary rounded text-light mt-3">Currently, there is no available data to retrieve. Please try searching using the tea round as a parameter.</p>
+                    <p class="text-center p-3 bg-primary rounded text-light mt-3">Currently, there is no available data
+                        to retrieve. Please try searching using the tea round as a parameter.</p>
                     @endif
                 </div>
 
@@ -173,10 +174,44 @@
                         }
                     }
 
-                    // Display total amount
+                    // Function to convert numeric value to words
+                    function numberToWords(num) {
+                        const ones = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight',
+                            'Nine', 'Ten',
+                            'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen',
+                            'Eighteen', 'Nineteen'
+                        ];
+
+                        const tens = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy',
+                            'Eighty', 'Ninety'
+                        ];
+
+                        function convertToWords(num) {
+                            if (num < 20) return ones[num];
+                            if (num < 100) return tens[Math.floor(num / 10)] + (num % 10 !== 0 ? '-' + ones[
+                                num % 10] : '');
+                            if (num < 1000) return ones[Math.floor(num / 100)] + ' Hundred' + (num % 100 !== 0 ?
+                                ' and ' + convertToWords(num % 100) : '');
+                            if (num < 1000000) return convertToWords(Math.floor(num / 1000)) + ' Thousand' + (
+                                num % 1000 !== 0 ? ' ' + convertToWords(num % 1000) : '');
+                            if (num < 1000000000) return convertToWords(Math.floor(num / 1000000)) +
+                                ' Million' + (num % 1000000 !== 0 ? ' ' + convertToWords(num % 1000000) :
+                                    '');
+                            return 'Number too large';
+                        }
+
+                        return convertToWords(num);
+                    }
+
+                    // Assuming 'totalAmount' is a numeric value representing the total amount
+                    // Display total amount with commas as thousands separators and in words
                     var totalAmountCell = document.getElementById('total-amount');
                     if (totalAmountCell) {
-                        totalAmountCell.innerText = 'Total Rs. ' + totalAmount;
+                        var formattedTotalAmount = totalAmount
+                    .toLocaleString(); // Convert to string with commas
+                        var totalAmountInWords = numberToWords(totalAmount);
+                        totalAmountCell.innerText = 'Total Rs: ' + formattedTotalAmount + '\n(' +
+                            totalAmountInWords + ' Rupees Only'+')';
                     }
                 });
                 </script>

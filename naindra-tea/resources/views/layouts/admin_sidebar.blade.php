@@ -51,6 +51,7 @@
                  z-index: 1000;
              }
 
+
              .custom-menu ul {
                  list-style-type: none;
                  margin: 0;
@@ -67,25 +68,47 @@
              .custom-menu ul li a:hover {
                  background-color: #ccc;
              }
+
+             .left-sidebar {
+                 height: 100vh;
+                 /* Set a fixed height, e.g., 100% of the viewport height */
+                 overflow-y: hidden;
+                 /* Hide the vertical scrollbar */
+             }
+
+             /* Hide the scroll on the sidebar navigation items */
+             .left-sidebar nav.sidebar-nav {
+                 overflow-y: hidden;
+             }
+
+             /* Set the maximum height for the sidebar content to accommodate the available space */
+             .left-sidebar .scroll-sidebar {
+                 max-height: calc(100vh - 100px);
+                 /* Adjust the height as needed */
+                 /* Subtract any extra height (e.g., header height) from the total viewport height */
+                 /* In this example, I assumed the header height to be 100px, adjust this value as per your design */
+                 overflow-y: auto;
+                 /* Add a vertical scroll if needed when content exceeds the available space */
+             }
              </style>
 
 
              <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
-             <i class='bx bx-x bx-sm'></i>
+                 <i class='bx bx-x bx-sm'></i>
              </div>
          </div>
          <!-- Sidebar navigation-->
          <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
              <ul id="sidebarnav">
                  <li class="nav-small-cap text-center">
-                    
+
                      <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                      <span class="hide-menu">Menus</span>
                  </li>
                  <li class="sidebar-item">
                      <a class="sidebar-link" href="{{url('admin/dashboard')}}" aria-expanded="false">
                          <span>
-                         <i class='bx bxs-dashboard bx-sm'></i>
+                             <i class='bx bxs-dashboard bx-sm'></i>
                          </span>
                          <span class="hide-menu">Dashboard</span>
                      </a>
@@ -139,7 +162,7 @@
                  <li class="sidebar-item">
                      <a class="sidebar-link" href="{{url('/admin/chemical-expenses')}}" aria-expanded="false">
                          <span>
-                         <i class="bi bi-wallet2 bx-sm"></i>
+                             <i class="bi bi-wallet2 bx-sm"></i>
                          </span>
                          <span class="hide-menu">Chemical Expenses</span>
                      </a>
@@ -148,7 +171,7 @@
                  <li class="sidebar-item">
                      <a class="sidebar-link" href="{{url('/admin/fertilizer-expenses')}}" aria-expanded="false">
                          <span>
-                         <i class="bi bi-wallet2 bx-sm"></i>
+                             <i class="bi bi-wallet2 bx-sm"></i>
                          </span>
                          <span class="hide-menu">Fertilizer Expenses</span>
                      </a>
@@ -177,7 +200,7 @@
                  <li class="sidebar-item">
                      <a class="sidebar-link" href="{{url('/logout')}}" aria-expanded="false">
                          <span>
-                         <i class='bx bx-log-out bx-sm'></i>
+                             <i class='bx bx-log-out bx-sm'></i>
                          </span>
                          <span class="hide-menu">Logout</span>
                      </a>
