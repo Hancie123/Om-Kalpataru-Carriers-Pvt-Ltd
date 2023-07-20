@@ -87,120 +87,108 @@
 
                 <div class="container rounded-container bg-light mt-4">
                     <div class="row">
-                        <div class="col-md-11 text-center">
+                        <div class="col-md-10 text-center">
                             <h2>Employees Collected Tea Analytics</h2>
                             <p class="mb-3 text-dark h5">Naindra Tea Farm</p>
                         </div>
-                        <div class="col-md-1 text-right">
-                            <button class="btn btn-primary" onclick="printTable()">Print</button>
+                        <div class="col-md-2 text-right">
+                            <button class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#employeesdata">Employees Tea Data</button>
                         </div>
                     </div>
 
 
                     <br>
-                    <h5 class="text-dark mb-3">Showing {{$count}} Employees Data...</h5>
-                    <div id="print-table">
-                        <div class="row">
 
-                            @foreach($employees as $data)
-                            <div class="col-md-3 mb-3">
-                                <div class="premium-card">
-                                    <div class="card-content">
-                                        <h4 class="card-title">{{ $data->Name }}</h4>
-                                        <p class="card-info">{{ $data->total_kg }} Kg</p>
-                                        <p class="card-price">Rs. {{ $data->total }}</p>
+
+                </div>
+
+
+
+
+                <!-- The Modal -->
+                <div class="modal" id="employeesdata">
+                    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                            <h4>Employees All Time Collected Tea Data</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                
+                                <h5 class="text-dark mb-3">Showing {{$count}} Employees Data...</h5>
+                                <div id="print-table">
+                                    <div class="row">
+
+                                        @foreach($employees as $data)
+                                        <div class="col-md-3">
+                                            <div class="card shadow">
+                                                <div class="card-body">
+                                                    <h4 class="card-title m-0">{{ $data->Name }}</h4>
+                                                    <p class="text-success m-0">Total Tea: {{ $data->total_kg }} Kg</p>
+                                                    <p class="text-danger">Total Amount: Rs. {{ $data->total }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
-                            @endforeach
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                            </div>
+
                         </div>
                     </div>
-
                 </div>
-            </div>
 
 
-
-            <script>
-            function printTable() {
-                var printContents = document.getElementById("print-table").innerHTML;
-                var originalContents = document.body.innerHTML;
-                document.body.innerHTML = printContents;
-                window.print();
-                document.body.innerHTML = originalContents;
-            }
-            </script>
+                
 
 
 
 
 
+                @include('layouts/admin_footer')
+
+                <style>
+                .rounded-container {
+                    border: 1px solid #ccc;
+                    border-radius: 10px;
+                    padding: 20px;
+                }
+
+                .card{
+                    border: 1px solid #ccc;
+                }
+
+                #table-heading {
+                    background: #3F3E91;
 
 
+                }
 
-            @include('layouts/admin_footer')
+                #w3-bar {
+                    background-color: rgb(63, 62, 145);
+                    color: #fff;
+                    font-size: 16px;
+                    font-family: Verdana, sans-serif;
 
-            <style>
-            .rounded-container {
-                border: 1px solid #ccc;
-                border-radius: 10px;
-                padding: 20px;
-            }
+                }
 
-            #table-heading {
-                background: #3F3E91;
+                .select2-container .select2-selection--single {
+                    height: calc(2.25rem + 2px) !important;
 
+                }
 
-            }
-
-            #w3-bar {
-                background-color: rgb(63, 62, 145);
-                color: #fff;
-                font-size: 16px;
-                font-family: Verdana, sans-serif;
-
-            }
-
-            .select2-container .select2-selection--single {
-                height: calc(2.25rem + 2px) !important;
-
-            }
-
-            /* Add this CSS in your existing stylesheet or inside <style> tags in the head section */
-
-            /* Custom styles for the premium card */
-            .premium-card {
-                border: 1px solid #e5e5e5;
-                border-radius: 10px;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                background-color: #f9f9f9;
-                width: 250px;
-                margin: 0 auto;
-                padding: 20px;
-                text-align: center;
-            }
-
-          
-
-            .card-title {
-                color: #333;
-                font-size: 24px;
-                font-weight: bold;
-                margin-bottom: 10px;
-            }
-
-            .card-info {
-                color: #777;
-                font-size: 18px;
-                margin-bottom: 5px;
-            }
-
-            .card-price {
-                color: #25a3d3;
-                font-size: 24px;
-                font-weight: bold;
-            }
-            </style>
+                
+                </style>
 
 
 
@@ -212,19 +200,19 @@
 
 
 
-            <script>
-            $(document).ready(function() {
-                $('.select2').select2({
-                    placeholder: 'Select an option'
+                <script>
+                $(document).ready(function() {
+                    $('.select2').select2({
+                        placeholder: 'Select an option'
+                    });
                 });
-            });
-            </script>
+                </script>
 
 
 
 
+            </div>
         </div>
-    </div>
     </div>
 
     @livewireScripts
