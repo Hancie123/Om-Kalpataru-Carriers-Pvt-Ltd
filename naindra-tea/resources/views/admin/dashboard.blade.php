@@ -285,7 +285,7 @@
                                 <div class="col-3 text-center pr-3 bx-flashing-hover" style="border-right: 1px solid #ccc;">
                                     <a class="text-dark">
                                         <i class='bx bx-user bx-md text-success'></i><br>
-                                        Employees</a><br>
+                                        Total Employees</a><br>
                                         <label class="text-dark">{{$countemployees}}</label>
                                 </div>
 
@@ -294,21 +294,21 @@
                                     <a class="text-dark">
                                         <i class='bx bx-trending-up bx-md text-success'></i><br>
                                         Net Profit</a><br>
-                                        <label class="text-dark">{{$countemployees}} Lakhs</label>
+                                        <label class="text-dark">Rs. {{$netprofit}}</label>
                                 </div>
                                 <!-- Second column -->
                                 <div class="col-3 text-center pr-3 bx-flashing-hover" style="border-right: 1px solid #ccc;">
                                     <a class="text-dark">
                                         <i class='bx bx-trending-up bx-md text-success'></i><br>
                                         Tea Income</a><br>
-                                        <label class="text-dark">{{$countemployees}} Lakhs</label>
+                                        <label class="text-dark">Rs. {{$teaincome}}</label>
                                 </div>
                                 <!-- Second column -->
-                                <div class="col-3 text-center pr-3 bx-flashing-hover" style="border-right: 1px solid #ccc;">
+                                <div class="col-3 text-center pr-3 bx-flashing-hover">
                                     <a class="text-dark">
                                         <i class='bx bx-rupee bx-md text-success'></i><br>
                                         Total Exp</a><br>
-                                        <label class="text-dark">{{$countemployees}}</label>
+                                        <label class="text-dark">Rs. {{$total_expenses}}</label>
                                 </div>
                             </div>
 
@@ -318,31 +318,31 @@
                                 <!-- First column with a vertical line on the right side -->
                                 <div class="col-3 text-center pr-3 bx-flashing-hover" style="border-right: 1px solid #ccc;">
                                     <a class="text-dark">
-                                        <i class='bx bx-line-chart bx-md text-success'></i><br>
+                                        <i class='bx bx-line-chart-down bx-md text-success'></i><br>
                                         Employees Exp</a><br>
-                                        <label class="text-dark">{{$countemployees}}</label>
+                                        <label class="text-dark">Rs. {{$totalemployeesamount}}</label>
                                 </div>
 
                                 <!-- Second column -->
                                 <div class="col-3 text-center pr-3 bx-flashing-hover" style="border-right: 1px solid #ccc;">
                                     <a class="text-dark">
-                                        <i class='bx bx-line-chart bx-md text-success'></i><br>
+                                        <i class='bx bx-line-chart-down bx-md text-success'></i><br>
                                         Chemical Exp</a><br>
-                                        <label class="text-dark">{{$countemployees}}</label>
+                                        <label class="text-dark">Rs. {{$chemicalexpenses}}</label>
                                 </div>
                                 <!-- Second column -->
                                 <div class="col-3 text-center pr-3 bx-flashing-hover" style="border-right: 1px solid #ccc;">
                                     <a class="text-dark">
-                                        <i class='bx bx-line-chart bx-md text-success'></i><br>
+                                        <i class='bx bx-line-chart-down bx-md text-success'></i><br>
                                         Fertilizer Exp</a><br>
-                                        <label class="text-dark">{{$countemployees}}</label>
+                                        <label class="text-dark">Rs. {{$fertilizerexpenses}}</label>
                                 </div>
                                 <!-- Second column -->
-                                <div class="col-3 text-center pr-3 bx-flashing-hover" style="border-right: 1px solid #ccc;">
+                                <div class="col-3 text-center pr-3 bx-flashing-hover">
                                     <a class="text-dark">
-                                        <i class='bx bx-line-chart bx-md text-success'></i><br>
-                                        Total Bils</a><br>
-                                        <label class="text-dark">{{$countemployees}}</label>
+                                        <i class='bx bxs-leaf bx-md text-success'></i><br>
+                                        Total Tea Kg</a><br>
+                                        <label class="text-dark">{{$totaltea->total}} Kg</label>
                                 </div>
                             </div>
 
