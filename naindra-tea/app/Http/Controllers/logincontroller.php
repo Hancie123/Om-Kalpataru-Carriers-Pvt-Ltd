@@ -8,6 +8,7 @@ use App\Models\User;
 use Hash;
 use Session;
 use Illuminate\Support\Facades\Auth;
+use App\Models\ActivityModel;
 
 class logincontroller extends Controller
 {
@@ -37,6 +38,14 @@ class logincontroller extends Controller
         Session::put('user_id', $users->id);
         Session::put('email', $credentials['email']);
         Session::put('name', $users->name);
+
+        $activity=new ActivityModel();
+        $activity->deviceModel=$request['deviceModel'];
+        $activity->osInfo=$request['osInfo'];
+        $activity->location=$request['location'];
+        $activity->date=$request['date'];
+        $activity->user_id=Session()->get('user_id');
+        $activity->save();
         return redirect('admin/dashboard')->with('success', 'You have successfully logged in to the system');
     }
     else {
@@ -48,9 +57,8 @@ class logincontroller extends Controller
         }
 
 
-        public function logout(Request $request){
+    public function logout(Request $request){
             Auth::logout();
-
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
