@@ -188,7 +188,7 @@
 
 
                  <li class="sidebar-item">
-                     <a class="sidebar-link" href="./ui-typography.html" aria-expanded="false">
+                     <a class="sidebar-link" href="{{url('/admin/settings')}}" aria-expanded="false">
                          <span>
                              <i class='bx bx-cog bx-sm'></i>
                          </span>

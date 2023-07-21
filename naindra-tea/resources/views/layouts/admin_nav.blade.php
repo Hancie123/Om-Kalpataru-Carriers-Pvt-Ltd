@@ -44,6 +44,10 @@
                                 <i class="bi bi-tools"></i>
                                 <p class="mb-0 fs-3">Tools</p>
                             </a>
+                            <a href="{{url('/admin/acivity-logs')}}" class="d-flex align-items-center gap-2 dropdown-item">
+                            <i class='bx bx-time-five bx-sm'></i>
+                                <p class="mb-0 fs-3">Activity Logs</p>
+                            </a>
                             <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
                                 <i class="ti ti-mail fs-6"></i>
                                 <p class="mb-0 fs-3">Settings</p>

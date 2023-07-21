@@ -17,6 +17,8 @@ use App\Http\Controllers\reportcontroller;
 use App\Http\Controllers\employeesreportcontroller;
 use App\Http\Controllers\toolscontroller;
 use App\Http\Controllers\tearecordreportcontroller;
+use App\Http\Controllers\settingcontroller;
+use App\Http\Controllers\activitycontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -89,3 +91,6 @@ Route::get('/admin/tea-reports/tea-records',[tearecordreportcontroller::class,'t
 
 
 Route::get('/admin/tools',[toolscontroller::class,'tools'])->middleware('sessioncheck');
+
+Route::get('/admin/settings',[settingcontroller::class,'setting'])->middleware('sessioncheck');
+Route::get('/admin/acivity-logs',[activitycontroller::class,'activity'])->middleware('sessioncheck');
