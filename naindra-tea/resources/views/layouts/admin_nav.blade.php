@@ -9,18 +9,18 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link nav-icon-hover" href="javascript:void(0)">
-                <i class='bx bx-bell bx-sm' ></i>
+                    <i class='bx bx-bell bx-sm'></i>
                     <div class="notification bg-primary rounded-circle"></div>
                 </a>
             </li>
         </ul>
         <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-            <li class="nav-item dropdown">
-            <iframe class="mt-2" scrolling="no" border="0" frameborder="0" marginwidth="0" marginheight="0" 
-            allowtransparency="true" 
-            src="https://www.ashesh.com.np/linknepali-time.php?dwn=only&font_color=333333&font_size=14&bikram_sambat=0&api=731273n184" 
-            width="120" height="23"></iframe>
+                <li class="nav-item dropdown">
+                    <iframe class="mt-2" scrolling="no" border="0" frameborder="0" marginwidth="0" marginheight="0"
+                        allowtransparency="true"
+                        src="https://www.ashesh.com.np/linknepali-time.php?dwn=only&font_color=333333&font_size=14&bikram_sambat=0&api=731273n184"
+                        width="120" height="23"></iframe>
                 </li>
                 <li class="nav-item dropdown">
                     <a href="#" data-bs-toggle="modal" data-bs-target="#calendermodal"><span><i
@@ -41,7 +41,7 @@
                                 <p class="mb-0 fs-3">My Profile</p>
                             </a>
                             <a href="{{url('/admin/tools')}}" class="d-flex align-items-center gap-2 dropdown-item">
-                            <i class="bi bi-tools"></i>
+                                <i class="bi bi-tools"></i>
                                 <p class="mb-0 fs-3">Tools</p>
                             </a>
                             <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">

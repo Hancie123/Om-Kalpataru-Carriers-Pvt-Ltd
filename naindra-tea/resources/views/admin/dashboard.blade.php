@@ -58,6 +58,208 @@
 
 
 
+                <div class="row">
+                    <!-- First column -->
+                    <div class="col-sm-6">
+                        <div class="card p-3">
+
+                            <label class="h4 m-4"><i class='bx bx-sun bx-md text-warning'></i> <span id="greeting"></span>,
+                                {{Session()->get('name')}}</label><br>
+
+
+                            <div class="row align-items-center mt-4 mb-4">
+                                <!-- First column with a vertical line on the right side -->
+                                <div class="col-4 text-center pr-3" style="border-right: 1px solid #ccc;">
+                                    <a href="{{url('/admin/tea-bills')}}" class="text-dark bx-flashing-hover">
+                                        <i class='bx bx-user bx-md text-success'></i><br>
+                                        Employees</a>
+                                </div><br>
+
+                                <!-- Second column -->
+                                <div class="col-4 text-center pl-3" style="border-right: 1px solid #ccc;">
+                                    <a href="{{url('/admin/emp-bill')}}" class="text-dark bx-flashing-hover">
+                                        <i class='bx bx-leaf bx-md text-success'></i><br>
+                                        Tea Records</a>
+                                </div>
+                                <!-- Second column -->
+                                <div class="col-4 text-center pl-3" >
+                                    <a href="{{url('/admin/emp-bill')}}" class="text-dark bx-flashing-hover">
+                                        <i class='bx bxs-truck bx-md text-success'></i><br>
+                                        Suppliers</a>
+                                </div>
+                            </div>
+
+
+                            <div class="row align-items-center mt-4 mb-4">
+                                <!-- First column with a vertical line on the right side -->
+                                <div class="col-4 text-center pr-3" style="border-right: 1px solid #ccc;">
+                                    <a href="{{url('/admin/tea-bills')}}" class="text-dark bx-flashing-hover">
+                                        <i class='bx bx-receipt bx-md text-success'></i><br>
+                                        Tea Bill</a>
+                                </div><br>
+
+                                <!-- Second column -->
+                                <div class="col-4 text-center pl-3" style="border-right: 1px solid #ccc;">
+                                    <a href="{{url('/admin/emp-bill')}}" class="text-dark bx-flashing-hover">
+                                        <i class='bx bx-cog bx-md text-success'></i><br>
+                                        Settings</a>
+                                </div>
+                                <!-- Second column -->
+                                <div class="col-4 text-center pl-3" >
+                                    <a href="{{url('/admin/emp-bill')}}" class="text-dark bx-flashing-hover">
+                                        <i class='bx bx-user-circle bx-md text-success'></i><br>
+                                        Profile</a>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+                    </div>
+
+                    <!-- Second column -->
+                    <div class="col-sm-6">
+                        <div class="card p-3">
+                            <h4>Today's Weather</h4>
+                            <div class="weather-card" id="todayWeather"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    var greetingElement = document.getElementById("greeting");
+                    var currentTime = new Date();
+                    var currentHour = currentTime.getHours();
+
+                    if (currentHour >= 5 && currentHour < 12) {
+                        greetingElement.textContent = "Good Morning";
+                    } else if (currentHour >= 12 && currentHour < 17) {
+                        greetingElement.textContent = "Good Afternoon";
+                    } else {
+                        greetingElement.textContent = "Good Night";
+                    }
+                });
+                </script>
+
+                <script>
+                // Replace 'YOUR_API_KEY' with your actual OpenWeatherMap API key
+                const apiKey = '86cd5d2209dbd1a831f7e0d53c09d4cb';
+                // Replace 'CITY_NAME' with the name of the city for which you want the weather
+                const city = 'Bhadrapur';
+
+                // Fetch the weather forecast data from OpenWeatherMap API
+                fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        // Extract today's weather from the API response
+                        const todayWeather = {
+                            weatherDescription: data.weather[0].description,
+                            temperatureKelvin: data.main.temp,
+                            iconCode: data.weather[0].icon,
+                        };
+                        displayTodayWeather(todayWeather);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching weather data:', error);
+                        document.getElementById('todayWeather').textContent = 'Error fetching weather data.';
+                    });
+
+                // Function to display today's weather information
+                function displayTodayWeather(weatherData) {
+                    const element = document.getElementById('todayWeather');
+                    const date = new Date().toDateString();
+                    const temperatureCelsius = (weatherData.temperatureKelvin - 273.15).toFixed(2);
+
+                    // Get the corresponding weather icon from BoxIcons
+                    const weatherIcon = getWeatherIcon(weatherData.iconCode);
+
+                    element.innerHTML = `
+      <p><strong>${date}</strong></p>
+      <p class="weather-icon">${weatherIcon}</p>
+      <p>Weather: ${capitalizeFirstLetter(weatherData.weatherDescription)}</p>
+      <p>Temperature: ${temperatureCelsius}°C</p>
+    `;
+                }
+
+                // Function to get the corresponding weather icon from BoxIcons
+                function getWeatherIcon(iconCode) {
+                    // Map the icon code to the corresponding BoxIcons weather icon
+                    switch (iconCode) {
+                        case '01d':
+                            return '<i class="bi bi-sun"></i>';
+                        case '01n':
+                            return '<i class="bi bi-moon"></i>';
+                        case '02d':
+                            return '<i class="bi bi-cloud-sun"></i>';
+                        case '02n':
+                            return '<i class="bi bi-cloud-moon"></i>';
+                        case '03d':
+                        case '03n':
+                            return '<i class="bi bi-cloud"></i>';
+                        case '04d':
+                        case '04n':
+                            return '<i class="bi bi-cloudy"></i>';
+                        case '09d':
+                        case '09n':
+                            return '<i class="bi bi-cloud-rain"></i>';
+                        case '10d':
+                        case '10n':
+                            return '<i class="bi bi-cloud-drizzle"></i>';
+                        case '11d':
+                        case '11n':
+                            return '<i class="bi bi-cloud-lightning-rain"></i>';
+                        case '13d':
+                        case '13n':
+                            return '<i class="bi bi-snow"></i>';
+                        case '50d':
+                        case '50n':
+                            return '<i class="bi bi-cloud-haze"></i>';
+                        default:
+                            return '<i class="bi bi-question"></i>';
+                    }
+                }
+
+                // Function to capitalize the first letter of a string
+                function capitalizeFirstLetter(string) {
+                    return string.charAt(0).toUpperCase() + string.slice(1);
+                }
+                </script>
+
+
+                <style>
+                /* Add some styles for better presentation */
+                .weather-card {
+                    border: 1px solid #ccc;
+                    border-radius: 10px;
+                    padding: 20px;
+                    margin: 5px;
+                    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+                    text-align: center;
+                }
+
+                .weather-icon {
+                    font-size: 60px;
+                    margin-bottom: 10px;
+                }
+
+                .weather-image {
+                    width: 100px;
+                    height: 100px;
+                    object-fit: cover;
+                    border-radius: 50%;
+                    margin-bottom: 10px;
+                }
+                </style>
+
+
+
+
+
 
 
 
@@ -76,97 +278,149 @@
                     <div class="col-lg-8 d-flex align-items-strech">
                         <div class="card w-100">
                             <div class="card-body">
-                                <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
-                                    <div class="mb-3 mb-sm-0">
-                                        <h5 class="card-title fw-semibold">Sales Overview</h5>
-                                    </div>
-                                    <div>
-                                        <select class="form-select">
-                                            <option value="1">March 2023</option>
-                                            <option value="2">April 2023</option>
-                                            <option value="3">May 2023</option>
-                                            <option value="4">June 2023</option>
-                                        </select>
-                                    </div>
+
+
+                            <div class="row align-items-center mt-4">
+                                <!-- First column with a vertical line on the right side -->
+                                <div class="col-3 text-center pr-3 bx-flashing-hover" style="border-right: 1px solid #ccc;">
+                                    <a class="text-dark">
+                                        <i class='bx bx-user bx-md text-success'></i><br>
+                                        Employees</a><br>
+                                        <label class="text-dark">{{$countemployees}}</label>
                                 </div>
-                                <div id="chart"></div>
+
+                                <!-- Second column -->
+                                <div class="col-3 text-center pr-3 bx-flashing-hover" style="border-right: 1px solid #ccc;">
+                                    <a class="text-dark">
+                                        <i class='bx bx-trending-up bx-md text-success'></i><br>
+                                        Net Profit</a><br>
+                                        <label class="text-dark">{{$countemployees}} Lakhs</label>
+                                </div>
+                                <!-- Second column -->
+                                <div class="col-3 text-center pr-3 bx-flashing-hover" style="border-right: 1px solid #ccc;">
+                                    <a class="text-dark">
+                                        <i class='bx bx-trending-up bx-md text-success'></i><br>
+                                        Tea Income</a><br>
+                                        <label class="text-dark">{{$countemployees}} Lakhs</label>
+                                </div>
+                                <!-- Second column -->
+                                <div class="col-3 text-center pr-3 bx-flashing-hover" style="border-right: 1px solid #ccc;">
+                                    <a class="text-dark">
+                                        <i class='bx bx-rupee bx-md text-success'></i><br>
+                                        Total Exp</a><br>
+                                        <label class="text-dark">{{$countemployees}}</label>
+                                </div>
+                            </div>
+
+
+<br><br>
+                            <div class="row align-items-center mt-4 mb-4">
+                                <!-- First column with a vertical line on the right side -->
+                                <div class="col-3 text-center pr-3 bx-flashing-hover" style="border-right: 1px solid #ccc;">
+                                    <a class="text-dark">
+                                        <i class='bx bx-line-chart bx-md text-success'></i><br>
+                                        Employees Exp</a><br>
+                                        <label class="text-dark">{{$countemployees}}</label>
+                                </div>
+
+                                <!-- Second column -->
+                                <div class="col-3 text-center pr-3 bx-flashing-hover" style="border-right: 1px solid #ccc;">
+                                    <a class="text-dark">
+                                        <i class='bx bx-line-chart bx-md text-success'></i><br>
+                                        Chemical Exp</a><br>
+                                        <label class="text-dark">{{$countemployees}}</label>
+                                </div>
+                                <!-- Second column -->
+                                <div class="col-3 text-center pr-3 bx-flashing-hover" style="border-right: 1px solid #ccc;">
+                                    <a class="text-dark">
+                                        <i class='bx bx-line-chart bx-md text-success'></i><br>
+                                        Fertilizer Exp</a><br>
+                                        <label class="text-dark">{{$countemployees}}</label>
+                                </div>
+                                <!-- Second column -->
+                                <div class="col-3 text-center pr-3 bx-flashing-hover" style="border-right: 1px solid #ccc;">
+                                    <a class="text-dark">
+                                        <i class='bx bx-line-chart bx-md text-success'></i><br>
+                                        Total Bils</a><br>
+                                        <label class="text-dark">{{$countemployees}}</label>
+                                </div>
+                            </div>
+
+
+
+
                             </div>
                         </div>
                     </div>
+
+
+
                     <div class="col-lg-4">
                         <div class="row">
                             <div class="col-lg-12">
                                 <!-- Yearly Breakup -->
                                 <div class="card overflow-hidden">
-                                    <div class="card-body p-4">
-                                        <h5 class="card-title mb-9 fw-semibold">Yearly Breakup</h5>
+                                    <h5 class="card-title mb-9 fw-semibold mx-2">Tea Bills</h5>
+                                    <div class="card-body p-3">
+
                                         <div class="row align-items-center">
-                                            <div class="col-8">
-                                                <h4 class="fw-semibold mb-3">$36,358</h4>
-                                                <div class="d-flex align-items-center mb-3">
-                                                    <span
-                                                        class="me-1 rounded-circle bg-light-success round-20 d-flex align-items-center justify-content-center">
-                                                        <i class="ti ti-arrow-up-left text-success"></i>
-                                                    </span>
-                                                    <p class="text-dark me-1 fs-3 mb-0">+9%</p>
-                                                    <p class="fs-3 mb-0">last year</p>
-                                                </div>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="me-4">
-                                                        <span
-                                                            class="round-8 bg-primary rounded-circle me-2 d-inline-block"></span>
-                                                        <span class="fs-2">2023</span>
-                                                    </div>
-                                                    <div>
-                                                        <span
-                                                            class="round-8 bg-light-primary rounded-circle me-2 d-inline-block"></span>
-                                                        <span class="fs-2">2023</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-4">
-                                                <div class="d-flex justify-content-center">
-                                                    <div id="breakup"></div>
-                                                </div>
+                                            <!-- First column with a vertical line on the right side -->
+                                            <div class="col-6 text-center pr-3" style="border-right: 1px solid #ccc;">
+                                                <a href="{{url('/admin/tea-bills')}}"
+                                                    class="text-dark bx-flashing-hover">
+                                                    <i class='bx bx-receipt bx-md text-success'></i><br>
+                                                    Tea Bill</a>
+                                            </div><br>
+
+                                            <!-- Second column -->
+                                            <div class="col-6 text-center pl-3">
+                                                <a href="{{url('/admin/emp-bill')}}"
+                                                    class="text-dark bx-flashing-hover">
+                                                    <i class='bx bx-receipt bx-md text-success'></i><br>
+                                                    Emp Bill</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+
+
                             <div class="col-lg-12">
-                                <!-- Monthly Earnings -->
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row alig n-items-start">
-                                            <div class="col-8">
-                                                <h5 class="card-title mb-9 fw-semibold"> Monthly Earnings </h5>
-                                                <h4 class="fw-semibold mb-3">$6,820</h4>
-                                                <div class="d-flex align-items-center pb-1">
-                                                    <span
-                                                        class="me-2 rounded-circle bg-light-danger round-20 d-flex align-items-center justify-content-center">
-                                                        <i class="ti ti-arrow-down-right text-danger"></i>
-                                                    </span>
-                                                    <p class="text-dark me-1 fs-3 mb-0">+9%</p>
-                                                    <p class="fs-3 mb-0">last year</p>
-                                                </div>
-                                            </div>
-                                            <div class="col-4">
-                                                <div class="d-flex justify-content-end">
-                                                    <div
-                                                        class="text-white bg-secondary rounded-circle p-6 d-flex align-items-center justify-content-center">
-                                                        <i class="ti ti-currency-dollar fs-6"></i>
-                                                    </div>
-                                                </div>
+                                <!-- Yearly Breakup -->
+                                <div class="card overflow-hidden">
+                                    <h5 class="card-title mb-9 fw-semibold mx-2">Tea Records</h5>
+                                    <div class="card-body p-3">
+
+                                        <div class="row align-items-center">
+                                            <!-- First column with a vertical line on the right side -->
+                                            <div class="col-6 text-center pr-3" style="border-right: 1px solid #ccc;">
+                                                <a href="{{url('admin/tea-records')}}"
+                                                    class="text-dark bx-flashing-hover">
+                                                    <i class='bx bx-leaf bx-md text-success'></i><br>
+                                                    Tea Records</a>
+                                            </div><br>
+
+                                            <!-- Second column -->
+                                            <div class="col-6 text-center pl-3">
+                                                <a href="{{url('/admin/tea-reports/tea-records')}}"
+                                                    class="text-dark bx-flashing-hover">
+                                                    <i class='bx bx-leaf bx-md text-success'></i><br>
+                                                    Tea Reports</a>
                                             </div>
                                         </div>
                                     </div>
-                                    <div id="earning"></div>
                                 </div>
                             </div>
+
+
                         </div>
                     </div>
                 </div>
-                <div class="row">
+
+
+
+                <!-- <div class="row">
                     <div class="col-lg-4 d-flex align-items-stretch">
                         <div class="card w-100">
                             <div class="card-body p-4">
@@ -175,69 +429,81 @@
                                 </div>
                                 <ul class="timeline-widget mb-0 position-relative mb-n5">
                                     <li class="timeline-item d-flex position-relative overflow-hidden">
-                                        <div class="timeline-time text-dark flex-shrink-0 text-end">09:30</div>
+                                        <div class="timeline-time text-dark flex-shrink-0 text-end">
+                                            09:30</div>
                                         <div class="timeline-badge-wrap d-flex flex-column align-items-center">
                                             <span
                                                 class="timeline-badge border-2 border border-primary flex-shrink-0 my-8"></span>
                                             <span class="timeline-badge-border d-block flex-shrink-0"></span>
                                         </div>
-                                        <div class="timeline-desc fs-3 text-dark mt-n1">Payment received from John
+                                        <div class="timeline-desc fs-3 text-dark mt-n1">Payment received
+                                            from John
                                             Doe
                                             of $385.90</div>
                                     </li>
                                     <li class="timeline-item d-flex position-relative overflow-hidden">
-                                        <div class="timeline-time text-dark flex-shrink-0 text-end">10:00 am</div>
+                                        <div class="timeline-time text-dark flex-shrink-0 text-end">
+                                            10:00 am</div>
                                         <div class="timeline-badge-wrap d-flex flex-column align-items-center">
                                             <span
                                                 class="timeline-badge border-2 border border-info flex-shrink-0 my-8"></span>
                                             <span class="timeline-badge-border d-block flex-shrink-0"></span>
                                         </div>
-                                        <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New sale
+                                        <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New
+                                            sale
                                             recorded <a href="javascript:void(0)"
                                                 class="text-primary d-block fw-normal">#ML-3467</a>
                                         </div>
                                     </li>
                                     <li class="timeline-item d-flex position-relative overflow-hidden">
-                                        <div class="timeline-time text-dark flex-shrink-0 text-end">12:00 am</div>
+                                        <div class="timeline-time text-dark flex-shrink-0 text-end">
+                                            12:00 am</div>
                                         <div class="timeline-badge-wrap d-flex flex-column align-items-center">
                                             <span
                                                 class="timeline-badge border-2 border border-success flex-shrink-0 my-8"></span>
                                             <span class="timeline-badge-border d-block flex-shrink-0"></span>
                                         </div>
-                                        <div class="timeline-desc fs-3 text-dark mt-n1">Payment was made of $64.95
+                                        <div class="timeline-desc fs-3 text-dark mt-n1">Payment was made
+                                            of $64.95
                                             to
                                             Michael</div>
                                     </li>
                                     <li class="timeline-item d-flex position-relative overflow-hidden">
-                                        <div class="timeline-time text-dark flex-shrink-0 text-end">09:30 am</div>
+                                        <div class="timeline-time text-dark flex-shrink-0 text-end">
+                                            09:30 am</div>
                                         <div class="timeline-badge-wrap d-flex flex-column align-items-center">
                                             <span
                                                 class="timeline-badge border-2 border border-warning flex-shrink-0 my-8"></span>
                                             <span class="timeline-badge-border d-block flex-shrink-0"></span>
                                         </div>
-                                        <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New sale
+                                        <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New
+                                            sale
                                             recorded <a href="javascript:void(0)"
                                                 class="text-primary d-block fw-normal">#ML-3467</a>
                                         </div>
                                     </li>
                                     <li class="timeline-item d-flex position-relative overflow-hidden">
-                                        <div class="timeline-time text-dark flex-shrink-0 text-end">09:30 am</div>
+                                        <div class="timeline-time text-dark flex-shrink-0 text-end">
+                                            09:30 am</div>
                                         <div class="timeline-badge-wrap d-flex flex-column align-items-center">
                                             <span
                                                 class="timeline-badge border-2 border border-danger flex-shrink-0 my-8"></span>
                                             <span class="timeline-badge-border d-block flex-shrink-0"></span>
                                         </div>
-                                        <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New arrival
+                                        <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New
+                                            arrival
                                             recorded
                                         </div>
                                     </li>
                                     <li class="timeline-item d-flex position-relative overflow-hidden">
-                                        <div class="timeline-time text-dark flex-shrink-0 text-end">12:00 am</div>
+                                        <div class="timeline-time text-dark flex-shrink-0 text-end">
+                                            12:00 am</div>
                                         <div class="timeline-badge-wrap d-flex flex-column align-items-center">
                                             <span
                                                 class="timeline-badge border-2 border border-success flex-shrink-0 my-8"></span>
                                         </div>
-                                        <div class="timeline-desc fs-3 text-dark mt-n1">Payment Done</div>
+                                        <div class="timeline-desc fs-3 text-dark mt-n1">Payment Done
+                                        </div>
                                     </li>
                                 </ul>
                             </div>
@@ -357,7 +623,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
 
             </div>

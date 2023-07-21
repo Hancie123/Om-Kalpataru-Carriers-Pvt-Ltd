@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\TeaBillModel;
+use App\Models\employeesmodel;
 
 class dashboardcontroller extends Controller
 {
@@ -15,7 +16,9 @@ class dashboardcontroller extends Controller
     $earningsData = $teabill->pluck('total_amount')->toArray();
     $dates = $teabill->pluck('date')->toArray();
 
-    return view('admin/dashboard', compact('earningsData', 'dates'));
+    $countemployees=EmployeesModel::count();
+
+    return view('admin/dashboard', compact('earningsData', 'dates','countemployees'));
         
     }
 }
