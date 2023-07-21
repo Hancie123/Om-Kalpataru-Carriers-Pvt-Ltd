@@ -98,13 +98,16 @@
 
                                 <div class="col-sm-4 column mb-3">
                                     <label class="form-label">Employee Name</label>
-
-                                    <select class="select2 form-control" name="employee_name">
-                                        <option>Select an option</option>
-                                        @foreach($employee as $data)
-                                        <option value="{{ $data->Employees_ID }}">{{ $data->Name }}</option>
-                                        @endforeach
-                                    </select>
+                                    <div class="input-group">
+                                        <select class="select2 form-select" name="employee_name">
+                                            <option>Select an option</option>
+                                            @foreach($employee as $data)
+                                            <option value="{{ $data->Employees_ID }}">{{ $data->Name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <a class="btn btn-success" data-bs-toggle="modal"
+                                            data-bs-target="#employeesmodal"><i class='bx bxs-book-add'></i></a>
+                                    </div>
 
                                     @error('employee_name')
                                     <span class="text-danger">{{$message}}</span>
@@ -218,6 +221,72 @@
                         <button class="btn btn-primary" type="reset">Reset</button>
 
                     </form>
+                </div>
+
+
+
+                <!-- The Modal -->
+                <div class="modal" id="employeesmodal">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">Create Employee Account</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+
+                            <form class="m-3" action="{{url('admin/employees/insertrecord')}}" method="post">
+                                @csrf
+                                <input type="hidden" name="date" value="<?php echo date("Y-m-d");?>"
+                                    class="form-control" readonly>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Name</label>
+                                            <input type="text" class="form-control" placeholder="Enter name"
+                                                name="name">
+                                            @error('name')
+                                            <span class="text-danger">{{$message}}</span>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="address" class="form-label">Address</label>
+                                            <input type="text" class="form-control" placeholder="Enter address"
+                                                name="address">
+                                            @error('address')
+                                            <span class="text-danger">{{$message}}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="mobile" class="form-label">Mobile No</label>
+                                            <input type="text" class="form-control" placeholder="Enter mobile"
+                                                name="mobile">
+                                            @error('mobile')
+                                            <span class="text-danger">{{$message}}</span>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <button class="btn btn-primary" type="submit">Save Record</button>
+                                <button class="btn btn-primary" type="reset">Reset Form</button>
+
+
+
+
+
+                            </form>
+
+                        </div>
+                    </div>
                 </div>
 
 

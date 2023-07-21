@@ -9,7 +9,7 @@
     <link rel="shortcut icon" type="image/png" href="{{url('assets/Images/2.png')}}" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta charset="UTF-8">
-  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>Naindra Tea Farm</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -59,14 +59,108 @@
                 <span class="alert alert-danger">{{Session()->get('fail')}}</span>
                 @endif
 
+                <input type="hidden" name="deviceModel" id="deviceModel">
+                <input type="hidden" name="osInfo" id="osInfo" >
+                <input type="hidden" name="location" id="location" >
+                <input type="hidden" name="date" id="date">
+
+
             </form>
+
+
+
             <!-- <button data-bs-toggle="modal" data-bs-target="#myModal" class="btn signin">Register</button> -->
         </div>
 
 
-        
+
     </div>
-    
+
+
+
+    <script>
+    window.addEventListener('load', () => {
+        showDeviceInfo();
+    });
+
+    async function showDeviceInfo() {
+        const deviceModelElement = document.getElementById('deviceModel');
+        const osInfoElement = document.getElementById('osInfo');
+        const locationElement = document.getElementById('location');
+        const dateElement = document.getElementById('date');
+        const ispElement = document.getElementById('isp');
+
+        const deviceModel = getDeviceModel();
+        deviceModelElement.value = deviceModel;
+
+        const osInfo = getOSInfo();
+        osInfoElement.value = osInfo;
+
+        try {
+            const location = await getLocationInfo();
+            locationElement.value = location;
+        } catch (error) {
+            console.error('Error fetching location information:', error.message);
+            locationElement.value = 'N/A';
+        }
+
+        dateElement.value = getCurrentDate();
+
+        try {
+            const isp = await getISPInfo();
+            ispElement.value = isp;
+        } catch (error) {
+            console.error('Error fetching ISP information:', error.message);
+            ispElement.value = 'N/A';
+        }
+    }
+
+    function getDeviceModel() {
+        const userAgent = navigator.userAgent;
+        return userAgent;
+    }
+
+    function getOSInfo() {
+        const userAgent = navigator.userAgent;
+        const osName = getOSName(userAgent);
+        const osVersion = getOSVersion(userAgent);
+        return `${osName} ${osVersion}`;
+    }
+
+    function getOSName(userAgent) {
+        if (/Windows/.test(userAgent)) return 'Windows';
+        if (/Mac OS X/.test(userAgent)) return 'Mac OS X';
+        if (/Linux/.test(userAgent)) return 'Linux';
+        if (/Android/.test(userAgent)) return 'Android';
+        if (/iOS/.test(userAgent)) return 'iOS';
+        return 'Unknown OS';
+    }
+
+    function getOSVersion(userAgent) {
+        const matches = userAgent.match(/(Windows NT|Mac OS X|Android|iOS) ([._\d]+)/);
+        return matches ? matches[2] : 'Unknown Version';
+    }
+
+    async function getLocationInfo() {
+        try {
+            const response = await fetch('https://ipapi.co/json/');
+            const data = await response.json();
+            const location = data.city + ', ' + data.region + ', ' + data.country_name;
+            return location;
+        } catch (error) {
+            console.error('Error fetching location information:', error.message);
+            throw error;
+        }
+    }
+
+
+
+    function getCurrentDate() {
+        const currentDate = new Date().toLocaleString();
+        return currentDate;
+    }
+    </script>
+
 
 
     <!-- The Modal -->

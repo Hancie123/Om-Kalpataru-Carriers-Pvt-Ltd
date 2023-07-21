@@ -70,20 +70,20 @@
                             <div class="row align-items-center mt-4 mb-4">
                                 <!-- First column with a vertical line on the right side -->
                                 <div class="col-4 text-center pr-3" style="border-right: 1px solid #ccc;">
-                                    <a href="{{url('/admin/tea-bills')}}" class="text-dark bx-flashing-hover">
+                                    <a href="{{url('admin/employees')}}" class="text-dark bx-flashing-hover">
                                         <i class='bx bx-user bx-md text-success'></i><br>
                                         Employees</a>
                                 </div><br>
 
                                 <!-- Second column -->
                                 <div class="col-4 text-center pl-3" style="border-right: 1px solid #ccc;">
-                                    <a href="{{url('/admin/emp-bill')}}" class="text-dark bx-flashing-hover">
+                                    <a href="{{url('admin/tea-records')}}" class="text-dark bx-flashing-hover">
                                         <i class='bx bx-leaf bx-md text-success'></i><br>
                                         Tea Records</a>
                                 </div>
                                 <!-- Second column -->
                                 <div class="col-4 text-center pl-3" >
-                                    <a href="{{url('/admin/emp-bill')}}" class="text-dark bx-flashing-hover">
+                                    <a href="{{url('/admin/tea-suppliers')}}" class="text-dark bx-flashing-hover">
                                         <i class='bx bxs-truck bx-md text-success'></i><br>
                                         Suppliers</a>
                                 </div>
@@ -100,13 +100,13 @@
 
                                 <!-- Second column -->
                                 <div class="col-4 text-center pl-3" style="border-right: 1px solid #ccc;">
-                                    <a href="{{url('/admin/emp-bill')}}" class="text-dark bx-flashing-hover">
+                                    <a href="#" class="text-dark bx-flashing-hover">
                                         <i class='bx bx-cog bx-md text-success'></i><br>
                                         Settings</a>
                                 </div>
                                 <!-- Second column -->
                                 <div class="col-4 text-center pl-3" >
-                                    <a href="{{url('/admin/emp-bill')}}" class="text-dark bx-flashing-hover">
+                                    <a href="#" class="text-dark bx-flashing-hover">
                                         <i class='bx bx-user-circle bx-md text-success'></i><br>
                                         Profile</a>
                                 </div>
@@ -138,10 +138,10 @@
 
                     if (currentHour >= 5 && currentHour < 12) {
                         greetingElement.textContent = "Good Morning";
-                    } else if (currentHour >= 12 && currentHour < 17) {
+                    } else if (currentHour >= 12 && currentHour < 15) {
                         greetingElement.textContent = "Good Afternoon";
                     } else {
-                        greetingElement.textContent = "Good Night";
+                        greetingElement.textContent = "Good Evening";
                     }
                 });
                 </script>

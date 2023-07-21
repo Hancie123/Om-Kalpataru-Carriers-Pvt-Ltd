@@ -16,7 +16,7 @@ class employeescontroller extends Controller
     public function insertrecord(Request $request)
 {
     $request->validate([
-        'name' => 'required',
+        'name' => 'required|unique:employees,name',
         'address' => 'required'
     ]);
 
