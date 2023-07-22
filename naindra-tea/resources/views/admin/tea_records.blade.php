@@ -672,7 +672,8 @@
                         var waterpercent = x / 100 * z;
                         var netkg = x - waterpercent;
                         var totalamount = netkg * y;
-                        $('#water_kg').val(waterpercent);
+                        var formattedWaterPercent = waterpercent.toFixed(2);
+                        $('#water_kg').val(formattedWaterPercent);
                         $('#total_kg').val(netkg);
                         $('#total_amount').val(totalamount);
                     });
