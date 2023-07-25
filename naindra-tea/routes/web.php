@@ -20,6 +20,8 @@ use App\Http\Controllers\tearecordreportcontroller;
 use App\Http\Controllers\settingcontroller;
 use App\Http\Controllers\activitycontroller;
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -54,6 +56,7 @@ Route::get('/admin/tea-records/delete/{id}', [teacontroller::class, 'deleterecor
 Route::post('admin/tea-records/update',[teacontroller::class,'updaterecords'])->middleware('sessioncheck');
 
 Route::get('/admin/profile',[profilecontroller::class,'profile'])->middleware('sessioncheck');
+Route::post('/admin/profile/change-password',[profilecontroller::class,'changepassword'])->middleware('sessioncheck');
 
 Route::get('/admin/tea-bills',[teabillcontroller::class,'teabill'])->middleware('sessioncheck');
 Route::post('/admin/tea-bills/insert',[teabillcontroller::class,'insertrecord'])->middleware('sessioncheck');
